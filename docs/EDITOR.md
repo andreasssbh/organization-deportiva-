@@ -9,14 +9,21 @@ la web en uno o dos minutos.
 1. Entra en la web y pulsa **«Acceso editor»** (al final de la página), o abre directamente `/#acceso`.
 2. Escribe su contraseña. Aparece una barra negra abajo: **Modo edición**.
 3. Hace clic en cualquier texto y escribe. Al hacer clic en un párrafo, un punto de una lista, un bloque o una foto
-   (o en el título de una sección, para seleccionar la sección entera) aparece una barra pequeña:
-   - **B**, *I*: negrita y cursiva; **🔗**: enlace. Se abre una ventana con el **texto que se ve** y **adónde lleva**:
-     una página web (basta con `www.ejemplo.com`), un correo, una sección de esta página o un PDF que se sube ahí
-     mismo. Los enlaces quedan en rojo como los demás;
-   - **↑ ↓**: mover; **✂ / 📋**: cortar y pegar en cualquier otro sitio (también secciones enteras); **⧉**: duplicar;
-     **🗑**: eliminar; **⤴**: seleccionar lo que lo contiene (el bloque, la sección…);
-   - **＋**: añadir algo nuevo junto a lo seleccionado: texto, subtítulo, lista, foto, botón/enlace, bloque (un
-     apartado con título dentro de la sección) o **sección nueva**. También está «＋ Añadir» en la barra de abajo.
+   (o en el título de una sección, para seleccionar la sección entera) aparece una barra pequeña de dos filas:
+   - **Formato del texto**: **B** negrita, *I* cursiva, U subrayado, **A− / A+** tamaño (pequeño, normal, grande,
+     muy grande), **color** (normal, rojo, gris), **alineación** (izquierda, centro, derecha), **listas** (dentro de
+     un cuadro de texto), **🔗 enlace** y **T×** quitar formato. Con palabras seleccionadas se aplica a ellas; sin
+     selección, al párrafo entero (y la alineación y el tamaño de un párrafo entero valen para los dos idiomas).
+     El enlace abre una ventana con el **texto que se ve** y **adónde lleva**: una página web (basta con
+     `www.ejemplo.com`), un correo, una sección de esta página o un PDF que se sube ahí mismo;
+   - **El elemento**: **⠿ arrastrar** (mantener pulsado y soltar donde se quiera; una línea azul marca el sitio),
+     **↑ ↓** mover, **✂ / 📋** cortar y pegar, **⧉** duplicar, **🗑** eliminar, **⤴** seleccionar lo que lo contiene y
+     **＋** añadir algo nuevo al lado.
+   - **Añadir**: el panel **«Añadir»** de la izquierda (en pantallas anchas; se arrastra un elemento a la página o
+     se hace clic), los botones **«＋ Añadir en esta sección»** (al final de cada sección) y **«＋ Sección nueva
+     aquí»** (entre secciones), o «＋ Añadir» en la barra de abajo. Se puede añadir texto, **cuadro de texto** (un
+     recuadro libre con varios párrafos y listas), subtítulo, lista, foto, botón/enlace, **bloque** (un apartado con
+     título dentro de la sección) o **sección nueva**.
    Las secciones nuevas reciben su enlace en el menú de arriba; al moverlas o borrarlas, el menú se reordena o pierde
    ese enlace solo.
 4. Fotos: botón **«Cambiar foto»** sobre cada foto (se reducen solas a 1800 px). **«Quitar»** la oculta.

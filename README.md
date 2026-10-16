@@ -92,5 +92,5 @@ página, por lo que:
 - Las listas largas (bibliografía completa, enlaces, revistas, postgrados, miembros) pueden estar **incompletas**.
 - Las URL de los enlaces externos son las canónicas de cada organismo; conviene verificarlas contra las del sitio.
 
-Mientras dure la revisión, la página muestra un aviso en la cabecera. Para retirarlo, pon
-`SHOW_VERIFY_NOTICE = false` en el `<script>` final de `index.html` (o borra el bloque `#verifyNotice`).
+El aviso «Versión en revisión» de la cabecera se ha retirado: el Dr. Víctor Jiménez corrige ahora los textos
+directamente con el editor del sitio.

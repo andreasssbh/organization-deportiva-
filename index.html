@@ -124,11 +124,6 @@
       .brand-text { display: none; }
     }
 
-    /* ---------- Aviso ---------- */
-    .notice { background: var(--red-soft); border-bottom: 1px solid var(--red); color: var(--text); font-size: .9rem; }
-    .notice .container { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; }
-    .notice button { margin-left: auto; border: 0; background: transparent; color: inherit; font-weight: 700; cursor: pointer; }
-
     /* ---------- Hero ---------- */
     .hero { position: relative; overflow: hidden; background: var(--surface); color: var(--text); border-bottom: 1px solid var(--line); }
     .hero::before { content: ""; position: absolute; top: -10%; bottom: -10%; right: -6%; width: 46%; background: var(--red); transform: skewX(-8deg); }
@@ -167,6 +162,12 @@
     .photo.has-img figcaption { opacity: 1; }
     .hero .photo { --ratio: 4 / 5; box-shadow: 0 24px 50px rgba(0,0,0,.28); }
     .photo.photo-inline { max-width: 560px; margin: 0 0 1em; }   /* fotos añadidas desde el editor */
+    /* Cuadro de texto libre y formatos del editor (tamaño, color, alineación) */
+    .textbox { background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; margin: 0 0 1em; box-shadow: var(--shadow); }
+    .textbox > div > :last-child { margin-bottom: 0; }
+    .txt-sm { font-size: .85em; } .txt-lg { font-size: 1.25em; } .txt-xl { font-size: 1.6em; line-height: 1.25; }
+    .txt-red { color: var(--red); } .txt-muted { color: var(--text-muted); }
+    .txt-center { text-align: center; } .txt-right { text-align: right; }
     .gallery { display: flex; flex-wrap: wrap; gap: 14px; }
     .gallery .photo { --ratio: 4 / 3; flex: 1 1 300px; max-width: 600px; }
     /* En pantallas medias y pequeñas la última foto ocupa el ancho restante, sin dejar hueco. */
@@ -205,6 +206,7 @@
 
     /* ---------- Apuntes (sección destacada) ---------- */
     .notes-intro { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: start; margin-bottom: 28px; }
+    .notes-intro .notes-book { margin-top: 18px; }
     @media (max-width: 860px) { .notes-intro { grid-template-columns: 1fr; } }
     .notes-book { background: var(--bg-elev); border: 1px solid var(--line); border-left: 5px solid var(--red); border-radius: 12px; padding: 18px 20px; }
     .notes-book strong { display: block; margin-bottom: 4px; }
@@ -244,7 +246,7 @@
     html[data-lang="en"] .es { display: none !important; }
 
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn:hover { transform: none; } }
-    @media print { .site-header, .notice, .to-top { display: none !important; } section.block { padding: 24px 0; } .hero::before { display: none; } }
+    @media print { .site-header, .to-top { display: none !important; } section.block { padding: 24px 0; } .hero::before { display: none; } }
   </style>
 </head>
 <body>
@@ -288,16 +290,6 @@
     </div>
   </div>
 </header>
-
-<!-- Aviso de cotejo: poner SHOW_VERIFY_NOTICE = false en el script cuando el contenido esté contrastado con el sitio original. -->
-<div class="notice" id="verifyNotice" hidden>
-  <div class="container">
-    <span aria-hidden="true">⚠️</span>
-    <span class="es">Versión en revisión: el texto de esta página se está cotejando con el contenido original de organizaciondeportiva.org.</span>
-    <span class="en">Version under review: the text on this page is being checked against the original content of organizaciondeportiva.org.</span>
-    <button type="button" id="dismissNotice" aria-label="Cerrar aviso">✕</button>
-  </div>
-</div>
 
 <main id="main" data-region="main"><!--editable:main-->
 <!-- =============================== HERO / INICIO =============================== -->
@@ -348,19 +340,19 @@
         <p class="en">The lecture notes for <strong>Sports Organisation and Legislation</strong> are arranged in five topics that walk, in order, through how sport is organised in Spain: from the legal framework to public administration, the associative fabric and professional sport. They are the reference material of the course and the basis of the tutorials.</p>
         <p class="muted es">Cada tema incluye un botón de descarga (PDF); los que aún no están disponibles aparecen como «Próximamente».</p>
         <p class="muted en">Each topic has a download button (PDF); those not yet available are shown as "Coming soon".</p>
+        <div class="notes-book">
+          <h4><span class="es">Manual de referencia</span><span class="en">Reference textbook</span></h4>
+          <strong>Blanco, E. (2006). <em>Manual de la organización institucional del deporte</em>.</strong>
+          <span class="muted">Barcelona: Editorial Paidotribo.</span>
+          <p class="muted es" style="margin:10px 0 0">Fuente principal de los apuntes. Ver también la <a href="#bibliografia">bibliografía recomendada</a>.</p>
+          <p class="muted en" style="margin:10px 0 0">Main source of the notes. See also the <a href="#bibliografia">recommended bibliography</a>.</p>
+        </div>
       </div>
       <div class="notes-side">
         <figure class="photo" data-src="images/apuntes.jpg">
           <img alt="Clase de Organización del Deporte">
           <figcaption><span class="es">Clase de Organización del Deporte: la organización privada</span><span class="en">Sports Organisation class: private organisation</span></figcaption>
         </figure>
-        <div class="notes-book">
-        <h4><span class="es">Manual de referencia</span><span class="en">Reference textbook</span></h4>
-        <strong>Blanco, E. (2006). <em>Manual de la organización institucional del deporte</em>.</strong>
-        <span class="muted">Barcelona: Editorial Paidotribo.</span>
-        <p class="muted es" style="margin:10px 0 0">Fuente principal de los apuntes. Ver también la <a href="#bibliografia">bibliografía recomendada</a>.</p>
-        <p class="muted en" style="margin:10px 0 0">Main source of the notes. See also the <a href="#bibliografia">recommended bibliography</a>.</p>
-        </div>
       </div>
     </div>
 
@@ -771,8 +763,6 @@
 (function () {
   'use strict';
 
-  // Poner en false cuando el contenido esté verificado contra el sitio original.
-  var SHOW_VERIFY_NOTICE = true;
 
   var root = document.documentElement;
   var TITLES = { es: 'Sport Management · Organización del Deporte', en: 'Sport Management · Sports Organisation' };
@@ -850,11 +840,6 @@
   /* ---------- Volver arriba ---------- */
   var toTop = document.getElementById('toTop');
   window.addEventListener('scroll', function () { toTop.classList.toggle('show', window.scrollY > 600); }, { passive: true });
-
-  /* ---------- Aviso de cotejo ---------- */
-  var notice = document.getElementById('verifyNotice');
-  if (SHOW_VERIFY_NOTICE && !safeGet('sm-notice-dismissed')) notice.hidden = false;
-  document.getElementById('dismissNotice').addEventListener('click', function () { notice.hidden = true; safeSet('sm-notice-dismissed', '1'); });
 
   /* ---------- Editor del sitio (solo se carga para el editor o en #acceso) ---------- */
   function loadEditor() {

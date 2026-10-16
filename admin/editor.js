@@ -80,6 +80,32 @@
     tDel: { es: 'Eliminar', en: 'Delete' },
     tParent: { es: 'Seleccionar el bloque que lo contiene', en: 'Select the enclosing block' },
     tCut: { es: 'Cortar (para moverlo a otro sitio)', en: 'Cut (to move it somewhere else)' },
+    tUnderline: { es: 'Subrayado', en: 'Underline' },
+    tSmaller: { es: 'Letra más pequeña', en: 'Smaller text' },
+    tBigger: { es: 'Letra más grande', en: 'Bigger text' },
+    tColor: { es: 'Color del texto', en: 'Text colour' },
+    tAlignLeft: { es: 'Alinear a la izquierda', en: 'Align left' },
+    tAlignCenter: { es: 'Centrar', en: 'Centre' },
+    tAlignRight: { es: 'Alinear a la derecha', en: 'Align right' },
+    tUl: { es: 'Lista con puntos (en un cuadro de texto)', en: 'Bulleted list (in a text box)' },
+    tOl: { es: 'Lista numerada (en un cuadro de texto)', en: 'Numbered list (in a text box)' },
+    tClear: { es: 'Quitar formato', en: 'Clear formatting' },
+    tDrag: { es: 'Arrastrar: mantén pulsado y suelta donde quieras ponerlo', en: 'Drag: hold and drop where you want it' },
+    dragHint: { es: 'Para arrastrar, mantén pulsado ⠿ y mueve el ratón hasta donde quieras ponerlo.', en: 'To drag, hold ⠿ and move the mouse to where you want it.' },
+    dragMoving: { es: 'Moviendo…', en: 'Moving…' },
+    colorNormal: { es: 'Normal', en: 'Normal' },
+    colorRed: { es: 'Rojo', en: 'Red' },
+    colorGrey: { es: 'Gris', en: 'Grey' },
+    selectTextFormat: { es: 'Haz clic primero en un texto (o selecciona unas palabras) para darle formato.', en: 'First click a text (or select some words) to format it.' },
+    listOnlyTextbox: { es: 'Las listas se hacen dentro de un «Cuadro de texto» (o con el elemento «Lista»).', en: 'Lists go inside a "Text box" (or use the "List" item).' },
+    paletteTitle: { es: 'Añadir', en: 'Add' },
+    paletteHint: { es: 'Arrastra a la página o haz clic para añadir junto a lo seleccionado.', en: 'Drag onto the page, or click to add next to the selection.' },
+    paletteOpen: { es: 'Mostrar el panel', en: 'Show the panel' },
+    paletteClose: { es: 'Ocultar el panel', en: 'Hide the panel' },
+    addHere: { es: '＋ Añadir en esta sección', en: '＋ Add to this section' },
+    addSectionHere: { es: '＋ Sección nueva aquí', en: '＋ New section here' },
+    addWhereSection: { es: 'Se añadirá al final de esta sección:', en: 'It will be added at the end of this section:' },
+    add_textbox: { es: 'Cuadro de texto', en: 'Text box' }, addHint_textbox: { es: 'Un recuadro libre para escribir lo que quieras (varios párrafos, listas…)', en: 'A free box to write anything (several paragraphs, lists…)' },
     tPaste: { es: 'Pegar lo cortado debajo de lo seleccionado', en: 'Paste what you cut below the selection' },
     tAdd: { es: 'Añadir algo nuevo aquí', en: 'Add something new here' },
     cutDone: { es: 'Cortado. Selecciona dónde quieres ponerlo y pulsa 📋 Pegar.', en: 'Cut. Select where you want it and press 📋 Paste.' },
@@ -116,17 +142,17 @@
     badEmail: { es: 'Ese correo no parece válido.', en: 'That email does not look valid.' },
     helpHtml: {
       es: '<h3>Cómo editar</h3><ul>' +
-        '<li><strong>Textos</strong>: haz clic en cualquier texto y escribe. Selecciona palabras para ponerlas en <strong>negrita</strong>, <em>cursiva</em> o convertirlas en enlace con 🔗 (eliges el texto y adónde lleva: una web, un correo, una sección o un PDF).</li>' +
-        '<li><strong>Elementos</strong>: al hacer clic en un párrafo, punto de lista, bloque o foto aparece una barra con ↑ ↓ (mover), ✂ y 📋 (cortar y pegar en otro sitio, también secciones enteras), ⧉ (duplicar) y 🗑 (eliminar). Con ⤴ seleccionas lo que lo contiene (el bloque, la sección…).</li>' +
-        '<li><strong>Añadir</strong>: ＋ en la barra pequeña (o «＋ Añadir» abajo) para poner texto, un subtítulo, una lista, una foto, un botón, un bloque o una sección nueva. Se añade junto a lo que tengas seleccionado; una sección nueva aparece también en el menú.</li>' +
+        '<li><strong>Textos</strong>: haz clic en cualquier texto y escribe. Con la barra pequeña: <strong>B</strong> negrita, <em>I</em> cursiva, <u>U</u> subrayado, A− / A+ tamaño, color, alineación, listas (en un cuadro de texto), 🔗 enlace (eliges el texto y adónde lleva: una web, un correo, una sección o un PDF) y T× para quitar el formato. Si seleccionas palabras se aplica a ellas; si no, al párrafo entero.</li>' +
+        '<li><strong>Mover</strong>: mantén pulsado ⠿ y arrastra hasta donde quieras (una línea azul indica dónde quedará). También ↑ ↓, o ✂ cortar y 📋 pegar. Haz clic en el título de una sección para seleccionarla entera; con ⤴ seleccionas lo que contiene al elemento.</li>' +
+        '<li><strong>Añadir</strong>: el panel «Añadir» de la izquierda (arrastra un elemento a la página o haz clic), los botones «＋ Añadir en esta sección» y «＋ Sección nueva aquí» de la página, o ＋ en la barra pequeña. Hay texto, cuadro de texto, subtítulo, lista, foto, botón, bloque y sección. Una sección nueva aparece también en el menú.</li>' +
         '<li><strong>Fotos</strong>: «Cambiar foto» en cada foto. Las fotos sin imagen no se ven en la web.</li>' +
         '<li><strong>Apuntes</strong>: «Subir PDF» junto a cada tema (máx. 3 MB).</li>' +
         '<li><strong>Idiomas</strong>: cada texto existe en español y en inglés y se cambia en cada idioma por separado: cambia a EN arriba para editar la versión inglesa. Las fotos, el orden y los bloques y secciones nuevos o borrados son comunes a los dos idiomas.</li>' +
         '<li>Pulsa <strong>Guardar</strong> al terminar. La web pública se actualiza en 1–2 minutos. Si algo sale mal, en <strong>Historial</strong> puedes volver a una versión anterior.</li></ul>',
       en: '<h3>How to edit</h3><ul>' +
-        '<li><strong>Text</strong>: click any text and type. Select words to make them <strong>bold</strong>, <em>italic</em> or a link with 🔗 (you choose the text and where it goes: a website, an email, a section or a PDF).</li>' +
-        '<li><strong>Items</strong>: clicking a paragraph, list item, block or photo shows a bar with ↑ ↓ (move), ✂ and 📋 (cut and paste elsewhere, whole sections too), ⧉ (duplicate) and 🗑 (delete). ⤴ selects what contains it (the block, the section…).</li>' +
-        '<li><strong>Add</strong>: ＋ in the small bar (or "＋ Add" below) to insert text, a subheading, a list, a photo, a button, a block or a new section. It is added next to your selection; a new section also appears in the menu.</li>' +
+        '<li><strong>Text</strong>: click any text and type. With the small bar: <strong>B</strong> bold, <em>I</em> italic, <u>U</u> underline, A− / A+ size, colour, alignment, lists (in a text box), 🔗 link (you choose the text and where it goes: a website, an email, a section or a PDF) and T× to clear formatting. With words selected it applies to them; otherwise to the whole paragraph.</li>' +
+        '<li><strong>Move</strong>: hold ⠿ and drag to where you want it (a blue line shows where it will go). Also ↑ ↓, or ✂ cut and 📋 paste. Click a section title to select the whole section; ⤴ selects what contains the item.</li>' +
+        '<li><strong>Add</strong>: the "Add" panel on the left (drag an item onto the page or click it), the "＋ Add to this section" and "＋ New section here" buttons on the page, or ＋ in the small bar. There is text, text box, subheading, list, photo, button, block and section. A new section also appears in the menu.</li>' +
         '<li><strong>Photos</strong>: "Change photo" on each photo. Photos without an image are hidden on the site.</li>' +
         '<li><strong>Lecture notes</strong>: "Upload PDF" next to each topic (max 3 MB).</li>' +
         '<li><strong>Languages</strong>: every text exists in Spanish and English and is changed in each language separately: switch to ES at the top to edit the Spanish version. Photos, order, and added or deleted blocks and sections are shared by both languages.</li>' +
@@ -136,9 +162,9 @@
   function t(k) { return TXT[k][L()]; }
 
   // Textos editables y elementos que se pueden mover / duplicar / eliminar.
-  var TEXT_SEL = 'h1, h2, h3, h4, p, li:not(.theme), figcaption, summary, .btn, .eyebrow, .tag, .stat > strong, .stat > span, .notes-book > strong, .notes-book > span, .schedule > span, nav[data-region] > a, footer nav > a, [data-region="footer"] > div > div';
-  var ITEM_SEL = 'li, p, h3, h4, figure.photo, article, details, .stat, .notes-book, .schedule, .person, .cta-row > .btn, .actions > a, nav[data-region] > a, footer nav > a';
-  var CONTAINER_SEL = 'article, details, section.block, .theme, figure.photo, .person, ul, ol, .grid, .gallery, .cta-row';
+  var TEXT_SEL = '.textbox > .es, .textbox > .en, h1, h2, h3, h4, p, li:not(.theme), figcaption, summary, .btn, .eyebrow, .tag, .stat > strong, .stat > span, .notes-book > strong, .notes-book > span, .schedule > span, nav[data-region] > a, footer nav > a, [data-region="footer"] > div > div';
+  var ITEM_SEL = '.textbox, li:not(.textbox li), p:not(.textbox p), h3:not(.textbox h3), h4:not(.textbox h4), figure.photo, article, details, .stat, .notes-book, .schedule, .person, .cta-row > .btn, .actions > a, nav[data-region] > a, footer nav > a';
+  var CONTAINER_SEL = 'article, details, section.block, .theme, figure.photo, .person, .textbox, ul:not(.textbox ul), ol:not(.textbox ol), .grid, .gallery, .cta-row';
   var MAX_FILE = 3.3 * 1024 * 1024;
 
   var state = {
@@ -244,6 +270,38 @@
       '.sm-dialog .sm-remove { color: #b91c1c; }' +
       '.sm-dialog button[hidden] { display: none; }' +
       'html.sm-editing .photo.photo-inline.no-img { min-height: 160px; }' +
+      '.sm-toolbar { flex-direction: column; gap: 4px; }' +
+      '.sm-toolbar .sm-tb-row { display: flex; gap: 4px; align-items: stretch; flex-wrap: wrap; }' +
+      '.sm-toolbar button small, .sm-toolbar button sup, .sm-toolbar button sub { font-size: 10px; }' +
+      '.sm-swatch { display: inline-block; width: 14px; height: 14px; border-radius: 4px; background: conic-gradient(#d92b23 0 33%, #111 0 66%, #8a8a90 0); border: 1px solid #555; vertical-align: middle; }' +
+      '.sm-color-menu { width: 180px; }' +
+      '.sm-color-menu button { display: flex; align-items: center; gap: 10px; }' +
+      '.sm-color-menu .sm-swatch.sm-sw-normal { background: #111; } .sm-color-menu .sm-swatch.txt-red { background: #d92b23; } .sm-color-menu .sm-swatch.txt-muted { background: #8a8a90; }' +
+      '.sm-toolbar [data-t="drag"] { cursor: grab; touch-action: none; }' +
+      'html.sm-dragging, html.sm-dragging * { cursor: grabbing !important; user-select: none !important; }' +
+      '.sm-ghost { position: fixed; z-index: 1003; pointer-events: none; background: #2563eb; color: #fff; padding: 6px 10px; border-radius: 8px; font: 600 13px/1.2 ui-sans-serif, system-ui, sans-serif; box-shadow: 0 8px 20px rgba(0,0,0,.3); }' +
+      '.sm-drop-line { position: fixed; z-index: 1002; pointer-events: none; background: #2563eb; border-radius: 4px; box-shadow: 0 0 0 3px rgba(37,99,235,.25); display: none; }' +
+      '.sm-drag-src { opacity: .35; }' +
+      '.sm-add-here { margin: 18px 0 0; }' +
+      '.sm-add-here button, .sm-add-section button { width: 100%; border: 2px dashed rgba(37,99,235,.55) !important; background: rgba(37,99,235,.06) !important; color: #2563eb !important; box-shadow: none !important; padding: 10px !important; font-weight: 700 !important; }' +
+      '.sm-add-here button:hover, .sm-add-section button:hover { background: rgba(37,99,235,.14) !important; }' +
+      '.sm-add-section { width: min(100% - 32px, 1180px); margin: 0 auto; padding: 6px 0; }' +
+      '.sm-add-section button { padding: 6px !important; font-size: 12px !important; opacity: .7; }' +
+      '.sm-add-section button:hover { opacity: 1; }' +
+      '.sm-palette { position: fixed; left: 10px; top: 86px; z-index: 998; width: 168px; max-height: calc(100vh - 200px); overflow: auto; background: #111; color: #fff; border-radius: 14px; padding: 10px; box-shadow: 0 12px 32px rgba(0,0,0,.35); }' +
+      '.sm-palette.sm-collapsed { width: auto; padding: 6px; }' +
+      '.sm-palette.sm-collapsed .sm-pal-hint, .sm-palette.sm-collapsed .sm-pal-tiles, .sm-palette.sm-collapsed .sm-pal-head strong { display: none; }' +
+      '.sm-pal-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; }' +
+      '.sm-pal-head strong { font-size: 15px; }' +
+      '.sm-pal-toggle { background: #262626 !important; color: #fff !important; border-color: #404040 !important; padding: 4px 8px !important; box-shadow: none !important; }' +
+      '.sm-pal-hint { font-size: 11px; color: #a3a3a3; margin: 6px 0 8px; line-height: 1.35; }' +
+      '.sm-pal-tiles { display: grid; gap: 6px; }' +
+      '.sm-tile { display: flex !important; align-items: center; gap: 8px; text-align: left; background: #1f1f1f !important; color: #fff !important; border: 1px solid #333 !important; box-shadow: none !important; padding: 9px 10px !important; cursor: grab !important; touch-action: none; }' +
+      '.sm-tile:hover { border-color: #2563eb !important; background: #1e293b !important; }' +
+      '.sm-tile-ico { width: 20px; text-align: center; font-size: 15px; opacity: .85; }' +
+      '@media (min-width: 1100px) { html.sm-pal-open body { padding-left: 186px; } }' +
+      '@media (max-width: 1099px) { .sm-palette { display: none; } }' +
+      'html.sm-editing .textbox > div:empty::before { content: "…"; color: var(--text-muted); }' +
       '@media (max-width: 640px) { .sm-bar .sm-status { flex-basis: 100%; order: 3; } }';
     document.head.appendChild(el('style', { id: 'smEditorCSS' }, css));
   }
@@ -319,7 +377,7 @@
     document.body.appendChild(bar);
     state.ui.bar = bar;
     // Cambiar de idioma con los botones ES/EN de la cabecera actualiza los textos de la barra.
-    new MutationObserver(renderBar).observe(root, { attributes: true, attributeFilter: ['data-lang'] });
+    new MutationObserver(function () { renderBar(); renderPalette(); }).observe(root, { attributes: true, attributeFilter: ['data-lang'] });
     renderBar();
   }
 
@@ -373,6 +431,38 @@
       region.querySelectorAll('figure.photo').forEach(addPhotoTools);
       region.querySelectorAll('a[data-file]').forEach(addPdfTool);
     });
+    addInlineAdders();
+  }
+
+  // Botones «＋ Añadir en esta sección» (al final de cada sección) y
+  // «＋ Sección nueva aquí» (entre secciones), solo en modo edición.
+  function addInlineAdders() {
+    var main = mainRegion(); if (!main) return;
+    Array.prototype.slice.call(main.children).forEach(function (sec) {
+      if (!sec.matches('section')) return;
+      var container = sec.querySelector(':scope > .container');
+      if (container && !sec.classList.contains('hero')) {
+        var here = el('div', { class: 'sm-ui sm-add-here', contenteditable: 'false' });
+        var b = el('button', { type: 'button' }, t('addHere'));
+        b.addEventListener('click', function (e) {
+          e.stopPropagation();
+          select(sec);
+          openAddMenu(b, { append: container }, true);
+        });
+        here.appendChild(b); container.appendChild(here);
+      }
+      var between = el('div', { class: 'sm-ui sm-add-section', contenteditable: 'false' });
+      var bs = el('button', { type: 'button' }, t('addSectionHere'));
+      bs.addEventListener('click', function (e) { e.stopPropagation(); addContent('section', { after: sec }); });
+      between.appendChild(bs);
+      sec.after(between);
+    });
+  }
+
+  // Añadir dentro de un contenedor, antes de los botones del editor que haya al final.
+  function appendInto(container, nodes) {
+    var ref = container.querySelector(':scope > .sm-add-here');
+    nodes.forEach(function (n) { container.insertBefore(n, ref); });
   }
 
   function startEditing() {
@@ -383,8 +473,10 @@
       if (!d.hasAttribute('data-sm-wasopen')) d.setAttribute('data-sm-wasopen', d.open ? '1' : '0');
       d.open = true;
     });
+    try { document.execCommand('defaultParagraphSeparator', false, 'p'); } catch (e) {}
     markEditable();
     refreshTools();
+    showPalette();
     renderBar();
   }
 
@@ -392,6 +484,7 @@
     state.editing = false;
     root.classList.remove('sm-editing');
     select(null);
+    hidePalette();
     document.querySelectorAll('[data-region] [contenteditable]').forEach(function (n) { n.removeAttribute('contenteditable'); });
     document.querySelectorAll('[data-region] .sm-ui').forEach(function (n) { n.remove(); });
     renderBar();
@@ -401,23 +494,40 @@
   function toolbar() {
     if (state.ui.toolbar) return state.ui.toolbar;
     var tb = el('div', { class: 'sm-toolbar sm-chrome', role: 'toolbar' });
-    var buttons = [
-      ['bold', '<b>B</b>', 'tBold'], ['italic', '<i>I</i>', 'tItalic'], ['link', '🔗', 'tLink'], '|',
-      ['up', '↑', 'tUp'], ['down', '↓', 'tDown'], ['cut', '✂', 'tCut'], ['paste', '📋', 'tPaste'], ['dup', '⧉', 'tDup'], ['del', '🗑', 'tDel'], '|',
-      ['parent', '⤴', 'tParent'], ['add', '＋', 'tAdd']
+    // Fila 1: formato del texto. Fila 2: el elemento seleccionado.
+    var rows = [
+      [['bold', '<b>B</b>', 'tBold'], ['italic', '<i>I</i>', 'tItalic'], ['underline', '<u>U</u>', 'tUnderline'], '|',
+        ['smaller', 'A<small>−</small>', 'tSmaller'], ['bigger', 'A<sup>+</sup>', 'tBigger'], ['color', '<span class="sm-swatch"></span>', 'tColor'], '|',
+        ['alignLeft', '⫷', 'tAlignLeft'], ['alignCenter', '≡', 'tAlignCenter'], ['alignRight', '⫸', 'tAlignRight'], '|',
+        ['ul', '•≡', 'tUl'], ['ol', '1.', 'tOl'], ['link', '🔗', 'tLink'], ['clear', 'T<sub>×</sub>', 'tClear']],
+      [['drag', '⠿', 'tDrag'], '|', ['up', '↑', 'tUp'], ['down', '↓', 'tDown'], ['cut', '✂', 'tCut'], ['paste', '📋', 'tPaste'], ['dup', '⧉', 'tDup'], ['del', '🗑', 'tDel'], '|',
+        ['parent', '⤴', 'tParent'], ['add', '＋', 'tAdd']]
     ];
-    buttons.forEach(function (b) {
-      if (b === '|') { tb.appendChild(el('span', { class: 'sm-sep' })); return; }
-      var btn = el('button', { type: 'button', 'data-t': b[0], 'data-tip': b[2] }, b[1]);
-      tb.appendChild(btn);
+    rows.forEach(function (row) {
+      var r = el('div', { class: 'sm-tb-row' });
+      row.forEach(function (b) {
+        if (b === '|') { r.appendChild(el('span', { class: 'sm-sep' })); return; }
+        r.appendChild(el('button', { type: 'button', 'data-t': b[0], 'data-tip': b[2] }, b[1]));
+      });
+      tb.appendChild(r);
+    });
+    // Arrastrar: se mantiene pulsado ⠿ y se suelta donde se quiera poner.
+    tb.querySelector('[data-t="drag"]').addEventListener('pointerdown', function (e) {
+      if (!state.current) return;
+      startDrag(e, { nodes: group(state.current), section: isTopSection(state.current) });
     });
     // mousedown sin foco: así no se pierde la selección del texto al pulsar.
     tb.addEventListener('mousedown', function (e) { e.preventDefault(); });
     tb.addEventListener('click', function (e) {
       var b = e.target.closest('button[data-t]'); if (!b) return;
-      ({ bold: function () { format('bold'); }, italic: function () { format('italic'); }, link: editLink,
+      var actions = { bold: function () { format('bold'); }, italic: function () { format('italic'); }, underline: function () { format('underline'); },
+        smaller: function () { stepSize(-1); }, bigger: function () { stepSize(1); }, color: function () { openColorMenu(b); },
+        alignLeft: function () { align(''); }, alignCenter: function () { align('txt-center'); }, alignRight: function () { align('txt-right'); },
+        ul: function () { list('insertUnorderedList'); }, ol: function () { list('insertOrderedList'); }, link: editLink, clear: clearFormat,
+        drag: function () { renderBar(t('dragHint')); },
         up: function () { move(-1); }, down: function () { move(1); }, cut: cut, paste: paste, dup: duplicate, del: removeItem,
-        parent: selectParent, add: function () { openAddMenu(b); } })[b.getAttribute('data-t')]();
+        parent: selectParent, add: function () { openAddMenu(b); } };
+      actions[b.getAttribute('data-t')]();
     });
     document.body.appendChild(tb);
     state.ui.toolbar = tb;
@@ -650,7 +760,7 @@
       var ag = group(after);
       ag[ag.length - 1].after.apply(ag[ag.length - 1], g);
     }
-    if (isTopSection(item)) syncNavOrder();
+    if (isTopSection(item)) { syncNavOrder(); refreshTools(); }
     setDirty(); select(item);
     var tgt = visible(g); if (tgt) tgt.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     setTimeout(positionToolbar, 350);
@@ -661,6 +771,7 @@
     var g = group(item);
     state.clip = { nodes: g, section: isTopSection(item) };
     g.forEach(function (n) { n.classList.remove('sm-selected'); n.remove(); });
+    if (state.clip.section) refreshTools();
     select(null); setDirty(); renderBar(t('cutDone'));
   }
 
@@ -703,7 +814,9 @@
       // Quitar también los enlaces del menú y del pie que llevaban a esta sección.
       document.querySelectorAll('[data-region="nav"] a[href="#' + item.id + '"], [data-region="footer"] a[href="#' + item.id + '"]').forEach(function (a) { a.remove(); });
     }
+    var wasSection = isTopSection(item);
     group(item).forEach(function (n) { n.remove(); });
+    if (wasSection) refreshTools();
     select(null); setDirty();
   }
 
@@ -737,18 +850,20 @@
   }
 
   /* ---------------- añadir contenido nuevo ---------------- */
-  var ADD_KINDS = ['text', 'heading', 'list', 'photo', 'button', 'card', 'section'];
+  var ADD_KINDS = ['text', 'textbox', 'heading', 'list', 'photo', 'button', 'card', 'section'];
   // Contenedores dentro de los que se colocan los elementos nuevos.
   var FLOW_SEL = '.container, article, .card, details > .body, .section-head, .hero-copy, .notes-intro > div, .notes-side, .notes-book, .person > div';
 
   function closeAddMenu() { if (state.ui.addMenu) { state.ui.addMenu.remove(); state.ui.addMenu = null; } }
 
-  function openAddMenu(anchorBtn) {
-    if (state.ui.addMenu) { closeAddMenu(); return; }
+  function openAddMenu(anchorBtn, target, inSection) {
+    if (state.ui.addMenu) { closeAddMenu(); if (!target) return; }
     var menu = el('div', { class: 'sm-add-menu sm-chrome', role: 'menu' });
-    var where = el('div', { class: 'sm-add-where' }); where.textContent = state.current ? t('addWhereSel') : t('addWhereEnd');
+    var where = el('div', { class: 'sm-add-where' });
+    where.textContent = inSection ? t('addWhereSection') : state.current ? t('addWhereSel') : t('addWhereEnd');
     menu.appendChild(where);
     ADD_KINDS.forEach(function (k) {
+      if (inSection && k === 'section') return;
       var b = el('button', { type: 'button', role: 'menuitem', 'data-k': k });
       b.innerHTML = '<strong></strong><small></small>';
       b.querySelector('strong').textContent = t('add_' + k);
@@ -758,7 +873,7 @@
     menu.addEventListener('mousedown', function (e) { e.preventDefault(); });
     menu.addEventListener('click', function (e) {
       var b = e.target.closest('button[data-k]'); if (!b) return;
-      closeAddMenu(); addContent(b.getAttribute('data-k'));
+      closeAddMenu(); addContent(b.getAttribute('data-k'), target);
     });
     document.body.appendChild(menu);
     state.ui.addMenu = menu;
@@ -774,6 +889,8 @@
   function template(kind) {
     var h = {
       text: '<p class="es">Escribe aquí el texto.</p><p class="en">Write the text here.</p>',
+      textbox: '<div class="textbox"><div class="es"><p>Escribe aquí lo que quieras. Puedes poner varios párrafos, listas, negritas, tamaños y colores.</p></div>' +
+        '<div class="en"><p>Write anything here. You can add several paragraphs, lists, bold text, sizes and colours.</p></div></div>',
       heading: '<h3>' + both('Subtítulo', 'Subheading') + '</h3>',
       list: '<ul><li>' + both('Primer punto', 'First item') + '</li><li>' + both('Segundo punto', 'Second item') + '</li></ul>',
       photo: '<figure class="photo photo-inline" data-src=""><img alt=""><figcaption>' + both('Pie de foto', 'Caption') + '</figcaption></figure>',
@@ -808,9 +925,11 @@
     return { after: g[g.length - 1] };
   }
 
-  function insertNodes(nodes, kind) {
-    var target = insertTarget(kind);
-    if (target.after) target.after.after.apply(target.after, nodes); else nodes.forEach(function (n) { target.append.appendChild(n); });
+  function insertNodes(nodes, kind, target) {
+    target = target || insertTarget(kind);
+    if (target.before) target.before.before.apply(target.before, nodes);
+    else if (target.after) target.after.after.apply(target.after, nodes);
+    else appendInto(target.append, nodes);
     markEditable(); refreshTools(); setDirty();
     var first = nodes[0];
     select(first.matches(ITEM_SEL) || first.matches('section') ? first : (first.querySelector(ITEM_SEL) || first));
@@ -820,7 +939,7 @@
     return nodes;
   }
 
-  function addContent(kind) {
+  function addContent(kind, target) {
     if (kind === 'button') {
       linkDialog({ title: t('linkNewButton'), text: '', href: '' }).then(function (r) {
         if (!r || r.remove) return;
@@ -829,21 +948,18 @@
         var a = el('a', { class: 'btn btn-primary btn-sm', href: r.href }, both('', ''));
         a.querySelectorAll('.es, .en').forEach(function (n) { n.textContent = r.text; });
         externalize(a); row.appendChild(a);
-        insertNodes([row], 'item');
+        insertNodes([row], 'item', target);
       });
       return;
     }
     var nodes = template(kind);
     if (kind === 'section') {
-      var target = insertTarget('section');
-      var prev = target.after || null;
+      target = target || insertTarget('section');
       nodes[0].id = newSectionId();
-      if (prev && !prev.classList.contains('alt')) nodes[0].classList.add('alt');
-      insertNodes(nodes, 'section');
-      var prevLink = prev && prev.id ? navRegion().querySelector('a[href="#' + prev.id + '"]') : null;
-      addNavLink(nodes[0], null, prevLink);
+      insertNodes(nodes, 'section', target);
+      placeNewSection(nodes[0]);
     } else {
-      insertNodes(nodes, 'item');
+      insertNodes(nodes, 'item', target);
     }
     // Poner el cursor en el texto nuevo, seleccionado para escribir encima.
     var editable = null;
@@ -860,6 +976,350 @@
       var range = document.createRange(); range.selectNodeContents(editable);
       var s = window.getSelection(); s.removeAllRanges(); s.addRange(range);
     }
+  }
+
+  // Una sección nueva alterna el fondo con la anterior y recibe su enlace en el menú.
+  function placeNewSection(sec) {
+    var prev = sec.previousElementSibling;
+    while (prev && !prev.matches('section')) prev = prev.previousElementSibling;
+    sec.classList.toggle('alt', Boolean(prev && !prev.classList.contains('alt')));
+    var prevLink = prev && prev.id ? navRegion().querySelector('a[href="#' + prev.id + '"]') : null;
+    addNavLink(sec, null, prevLink);
+  }
+
+  /* ---------------- formato del texto ---------------- */
+  var SIZES = ['txt-sm', '', 'txt-lg', 'txt-xl'];
+  var COLORS = [['', 'colorNormal'], ['txt-red', 'colorRed'], ['txt-muted', 'colorGrey']];
+
+  function currentHost() {
+    var sel = window.getSelection();
+    var host = sel.rangeCount ? editableHost(sel.anchorNode) : null;
+    return host && inRegion(host) ? host : null;
+  }
+  // Lo que es común a los dos idiomas (alineación, tamaño de un párrafo entero)
+  // se aplica también a su traducción.
+  function blockTargets(host) {
+    var blk = host.matches('span') ? host.parentElement : host;
+    if (host.matches('.textbox > div')) blk = host.parentElement;
+    return group(blk);
+  }
+  function setClass(nodes, list, cls) {
+    nodes.forEach(function (n) { list.forEach(function (c) { if (c) n.classList.remove(c); }); if (cls) n.classList.add(cls); });
+  }
+  function unwrap(n) { while (n.firstChild) n.parentNode.insertBefore(n.firstChild, n); n.remove(); }
+  // Vuelve a seleccionar unos nodos (para poder seguir aplicando formato al mismo texto).
+  function selectInside(n) {
+    var r = document.createRange(); r.selectNodeContents(n);
+    var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+  }
+  function selectNodes(first, last) {
+    if (!first || !first.parentNode) return;
+    var r = document.createRange(); r.setStartBefore(first); r.setEndAfter(last || first);
+    var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+  }
+
+  // Aplica una clase (tamaño o color) al texto seleccionado; sin selección, al párrafo entero.
+  function applyText(list, cls) {
+    var host = currentHost(); if (!host) { window.alert(t('selectTextFormat')); return; }
+    var sel = window.getSelection();
+    if (sel.isCollapsed) {
+      setClass(blockTargets(host), list, cls); // párrafo entero: en los dos idiomas
+    } else {
+      var range = sel.getRangeAt(0);
+      // Si lo seleccionado ya es justo un fragmento con formato del mismo tipo
+      // (por ejemplo, una palabra ya agrandada), se cambia ese formato en vez de anidar otro.
+      var anc = range.commonAncestorContainer; anc = anc.nodeType === 1 ? anc : anc.parentElement;
+      var sp = anc.closest('span');
+      while (sp && sp !== host && host.contains(sp)) {
+        var hasList = list.some(function (c) { return c && sp.classList.contains(c); });
+        if (hasList && sp.textContent.trim() === range.toString().trim()) {
+          setClass([sp], list, cls);
+          if (!sp.className) {
+            var first = sp.firstChild, last = sp.lastChild;
+            sp.removeAttribute('class'); unwrap(sp); selectNodes(first, last);
+          } else selectInside(sp);
+          setDirty();
+          return;
+        }
+        sp = sp.parentElement && sp.parentElement.closest('span');
+      }
+      var frag = range.extractContents();
+      frag.querySelectorAll('span').forEach(function (sp) { setClass([sp], list, ''); if (!sp.className) { sp.removeAttribute('class'); unwrap(sp); } });
+      if (cls) {
+        var span = el('span', { class: cls }); span.appendChild(frag);
+        range.insertNode(span); selectInside(span);
+      } else {
+        var f = frag.firstChild, l = frag.lastChild;
+        range.insertNode(frag); selectNodes(f, l);
+      }
+    }
+    setDirty();
+  }
+  function currentClass(list) {
+    var sel = window.getSelection(); if (!sel.rangeCount) return '';
+    var n = sel.anchorNode && (sel.anchorNode.nodeType === 1 ? sel.anchorNode : sel.anchorNode.parentElement);
+    var host = currentHost(); if (!host) return '';
+    var stop = blockTargets(host)[0].parentElement;
+    while (n && n !== stop) {
+      for (var i = 0; i < list.length; i++) if (list[i] && n.classList && n.classList.contains(list[i])) return list[i];
+      n = n.parentElement;
+    }
+    return '';
+  }
+  function stepSize(dir) {
+    if (!currentHost()) { window.alert(t('selectTextFormat')); return; }
+    var i = SIZES.indexOf(currentClass(SIZES));
+    var next = SIZES[Math.min(SIZES.length - 1, Math.max(0, i + dir))];
+    applyText(SIZES, next);
+  }
+  function align(cls) {
+    var host = currentHost(); if (!host) { window.alert(t('selectTextFormat')); return; }
+    setClass(blockTargets(host), ['txt-center', 'txt-right'], cls);
+    setDirty();
+  }
+  function list(cmd) {
+    var host = currentHost();
+    if (!host || !host.matches('.textbox > div')) { window.alert(t('listOnlyTextbox')); return; }
+    document.execCommand(cmd, false, null);
+    // El navegador a veces mete la lista dentro de un párrafo: sacarla.
+    host.querySelectorAll('p > ul, p > ol').forEach(function (lst) {
+      var par = lst.parentElement; par.after(lst);
+      if (!par.textContent.trim()) par.remove();
+    });
+    setDirty();
+  }
+  function clearFormat() {
+    var host = currentHost(); if (!host) { window.alert(t('selectTextFormat')); return; }
+    var sel = window.getSelection();
+    var whole = sel.isCollapsed;
+    if (whole) {
+      var r = document.createRange(); r.selectNodeContents(host); sel.removeAllRanges(); sel.addRange(r);
+    }
+    // Decidir qué se quita antes de tocar nada (al cambiar el texto la selección se mueve).
+    var spans = Array.prototype.filter.call(host.querySelectorAll('span[class*="txt-"]'), function (sp) { return whole || sel.containsNode(sp, true); });
+    document.execCommand('removeFormat', false, null);
+    spans.forEach(function (sp) { if (sp.isConnected) unwrap(sp); });
+    setClass(blockTargets(host), SIZES.concat(['txt-red', 'txt-muted']), '');
+    setDirty();
+  }
+  function openColorMenu(btn) {
+    if (!currentHost()) { window.alert(t('selectTextFormat')); return; }
+    closeAddMenu();
+    var menu = el('div', { class: 'sm-add-menu sm-color-menu sm-chrome', role: 'menu' });
+    COLORS.forEach(function (c) {
+      var b = el('button', { type: 'button', 'data-c': c[0] }, '<span class="sm-swatch ' + (c[0] || 'sm-sw-normal') + '"></span><strong></strong>');
+      b.querySelector('strong').textContent = t(c[1]);
+      menu.appendChild(b);
+    });
+    menu.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    menu.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-c]'); if (!b) return;
+      closeAddMenu(); applyText(['txt-red', 'txt-muted'], b.getAttribute('data-c'));
+    });
+    document.body.appendChild(menu);
+    state.ui.addMenu = menu;
+    var r = btn.getBoundingClientRect();
+    menu.style.top = (r.bottom + window.scrollY + 6) + 'px';
+    menu.style.left = Math.max(8, r.left + window.scrollX) + 'px';
+  }
+
+  /* ---------------- panel «Añadir» ---------------- */
+  function showPalette() {
+    if (state.ui.palette) return;
+    var collapsed = false;
+    try { collapsed = localStorage.getItem('sm-palette') === '0'; } catch (e) {}
+    var pal = el('aside', { class: 'sm-palette sm-chrome', 'aria-label': t('paletteTitle') });
+    pal.innerHTML = '<div class="sm-pal-head"><strong></strong><button type="button" class="sm-pal-toggle"></button></div><p class="sm-pal-hint"></p><div class="sm-pal-tiles"></div>';
+    ADD_KINDS.forEach(function (k) {
+      var b = el('button', { type: 'button', class: 'sm-tile', 'data-k': k });
+      b.innerHTML = '<span class="sm-tile-ico" aria-hidden="true"></span><strong></strong>';
+      b.querySelector('.sm-tile-ico').textContent = { text: '¶', textbox: '▭', heading: 'H', list: '•', photo: '🖼', button: '⬭', card: '▣', section: '☰' }[k];
+      b.querySelector('strong').textContent = t('add_' + k);
+      b.title = t('addHint_' + k);
+      pal.querySelector('.sm-pal-tiles').appendChild(b);
+      // Clic: añadir junto a lo seleccionado. Arrastrar: soltar donde se quiera.
+      b.addEventListener('pointerdown', function (e) {
+        var x0 = e.clientX, y0 = e.clientY;
+        function mv(ev) {
+          if (Math.abs(ev.clientX - x0) + Math.abs(ev.clientY - y0) < 6) return;
+          cleanup(); startDrag(ev, { kind: k, section: k === 'section' });
+        }
+        function up() { cleanup(); }
+        function cleanup() { document.removeEventListener('pointermove', mv); document.removeEventListener('pointerup', up); }
+        document.addEventListener('pointermove', mv); document.addEventListener('pointerup', up);
+      });
+      b.addEventListener('click', function () { if (!state.dragJustEnded) addContent(k); });
+    });
+    pal.querySelector('.sm-pal-toggle').addEventListener('click', function () { setPaletteOpen(pal.classList.contains('sm-collapsed')); });
+    pal.addEventListener('mousedown', function (e) { if (e.target.closest('.sm-tile')) e.preventDefault(); });
+    document.body.appendChild(pal);
+    state.ui.palette = pal;
+    renderPalette();
+    setPaletteOpen(!collapsed);
+  }
+  function renderPalette() {
+    var pal = state.ui.palette; if (!pal) return;
+    pal.querySelector('.sm-pal-head strong').textContent = t('paletteTitle');
+    pal.querySelector('.sm-pal-hint').textContent = t('paletteHint');
+    pal.querySelectorAll('.sm-tile').forEach(function (b) {
+      b.querySelector('strong').textContent = t('add_' + b.getAttribute('data-k'));
+      b.title = t('addHint_' + b.getAttribute('data-k'));
+    });
+    pal.querySelector('.sm-pal-toggle').textContent = pal.classList.contains('sm-collapsed') ? '»' : '«';
+    pal.querySelector('.sm-pal-toggle').title = pal.classList.contains('sm-collapsed') ? t('paletteOpen') : t('paletteClose');
+  }
+  function setPaletteOpen(open) {
+    var pal = state.ui.palette; if (!pal) return;
+    pal.classList.toggle('sm-collapsed', !open);
+    root.classList.toggle('sm-pal-open', open);
+    try { localStorage.setItem('sm-palette', open ? '1' : '0'); } catch (e) {}
+    renderPalette();
+    setTimeout(positionToolbar, 50);
+  }
+  function hidePalette() {
+    if (state.ui.palette) { state.ui.palette.remove(); state.ui.palette = null; }
+    root.classList.remove('sm-pal-open');
+  }
+
+  /* ---------------- arrastrar y soltar ---------------- */
+  // payload: { nodes: [...] } para mover algo que ya existe, o { kind } para algo nuevo del panel.
+  var drag = null;
+  function startDrag(e, payload) {
+    e.preventDefault();
+    closeAddMenu();
+    var label = payload.kind ? t('add_' + payload.kind) : t('dragMoving');
+    drag = {
+      payload: payload, drop: null, x: e.clientX, y: e.clientY,
+      ghost: el('div', { class: 'sm-ghost sm-chrome' }), line: el('div', { class: 'sm-drop-line sm-chrome' })
+    };
+    drag.ghost.textContent = '⠿ ' + label;
+    document.body.appendChild(drag.ghost); document.body.appendChild(drag.line);
+    if (payload.nodes) payload.nodes.forEach(function (n) { n.classList.add('sm-drag-src'); });
+    root.classList.add('sm-dragging');
+    if (state.ui.toolbar) state.ui.toolbar.classList.remove('sm-show');
+    document.addEventListener('pointermove', onDragMove);
+    document.addEventListener('pointerup', onDragEnd);
+    document.addEventListener('keydown', onDragKey);
+    drag.timer = setInterval(autoScroll, 16);
+    onDragMove(e);
+  }
+  function autoScroll() {
+    if (!drag) return;
+    if (drag.y < 90) window.scrollBy(0, -Math.ceil((90 - drag.y) / 6));
+    else if (drag.y > window.innerHeight - 110) window.scrollBy(0, Math.ceil((drag.y - window.innerHeight + 110) / 6));
+  }
+  function onDragKey(e) { if (e.key === 'Escape') { drag.drop = null; onDragEnd(); } }
+
+  function onDragMove(e) {
+    if (!drag) return;
+    drag.x = e.clientX; drag.y = e.clientY;
+    drag.ghost.style.left = (e.clientX + 14) + 'px';
+    drag.ghost.style.top = (e.clientY + 14) + 'px';
+    var under = document.elementFromPoint(e.clientX, e.clientY);
+    drag.drop = dropAt(under, e.clientX, e.clientY);
+    drawDropLine(drag.drop);
+  }
+
+  function insideDragged(n) {
+    var nodes = drag.payload.nodes || [];
+    for (var i = 0; i < nodes.length; i++) if (nodes[i] === n || nodes[i].contains(n)) return true;
+    return false;
+  }
+
+  // Dónde caería lo arrastrado: { ref, before } o { container } (al final).
+  function dropAt(under, x, y) {
+    var main = mainRegion();
+    if (!under || !main.contains(under) || under.closest('.sm-chrome')) return null;
+    if (under.closest('.sm-add-section')) {
+      var prevSec = under.closest('.sm-add-section').previousElementSibling;
+      return drag.payload.section ? { ref: prevSec, before: false, axis: 'y' } : null;
+    }
+    if (drag.payload.section) {
+      var sec = topSection(under); if (!sec || insideDragged(sec)) return null;
+      var rs = sec.getBoundingClientRect();
+      return { ref: sec, before: y < rs.top + rs.height / 2, axis: 'y' };
+    }
+    if (insideDragged(under)) return null;
+    var nodes = drag.payload.nodes;
+    if (nodes && nodes[0].matches('li')) {
+      var li = under.closest('li');
+      if (!li || insideDragged(li) || li.closest('.textbox')) return null;
+      var rl = li.getBoundingClientRect();
+      return { ref: li, before: y < rl.top + rl.height / 2, axis: 'y' };
+    }
+    if (under.closest('.sm-add-here')) return { container: under.closest('.sm-add-here').parentElement };
+    // Un bloque arrastrado (recuadro, cuadro de texto, desplegable) se pone antes o
+    // después de otros bloques, no dentro de ellos.
+    var box = (nodes && nodes[0].matches('article, .card, details, .textbox')) || drag.payload.kind === 'card';
+    var BOX_SEL = 'article, .card, details > .body, .notes-book, .person > div';
+    // Subir hasta un elemento cuyo padre sea un contenedor donde se pueden poner cosas.
+    var n = under.closest('.textbox') || under;
+    while (n && n !== main) {
+      var parent = n.parentElement;
+      if (!parent) return null;
+      if (box && parent.matches(BOX_SEL)) { n = parent; continue; }
+      if (n.matches('section') && parent === main) {
+        var c = n.querySelector(':scope > .container');
+        return c && !n.classList.contains('hero') ? { container: c } : null;
+      }
+      if (!n.classList.contains('sm-ui') && (parent.matches(FLOW_SEL) || parent.matches('.grid, .gallery'))) {
+        if (insideDragged(n)) return null;
+        // Sobre el espacio vacío de un contenedor: al final del contenedor.
+        if (n.matches(FLOW_SEL) && n === under && !n.matches('.section-head')) return { container: n };
+        var r = n.getBoundingClientRect();
+        var axis = parent.matches('.grid, .gallery') && r.width < parent.getBoundingClientRect().width * 0.8 ? 'x' : 'y';
+        var before = axis === 'x' ? x < r.left + r.width / 2 : y < r.top + r.height / 2;
+        return { ref: n, before: before, axis: axis };
+      }
+      n = parent;
+    }
+    return null;
+  }
+
+  function drawDropLine(d) {
+    var line = drag.line;
+    if (!d) { line.style.display = 'none'; return; }
+    var r, top, left, w, h;
+    if (d.container) {
+      var c = d.container, ref = c.querySelector(':scope > .sm-add-here');
+      var last = ref ? ref.previousElementSibling : c.lastElementChild;
+      var cr = c.getBoundingClientRect();
+      top = last ? last.getBoundingClientRect().bottom + 4 : cr.top + 8;
+      left = cr.left; w = cr.width; h = 4;
+    } else {
+      var g = group(d.ref);
+      r = (d.before ? g[0] : g[g.length - 1]).getBoundingClientRect();
+      var vis = visible(g); if (vis) r = vis.getBoundingClientRect();
+      if (d.axis === 'x') { top = r.top; h = r.height; left = d.before ? r.left - 6 : r.right + 2; w = 4; }
+      else { left = r.left; w = r.width; h = 4; top = d.before ? r.top - 6 : r.bottom + 2; }
+    }
+    line.style.display = 'block';
+    line.style.top = top + 'px'; line.style.left = left + 'px'; line.style.width = w + 'px'; line.style.height = h + 'px';
+  }
+
+  function onDragEnd() {
+    if (!drag) return;
+    var d = drag.drop, payload = drag.payload;
+    clearInterval(drag.timer);
+    drag.ghost.remove(); drag.line.remove();
+    document.removeEventListener('pointermove', onDragMove);
+    document.removeEventListener('pointerup', onDragEnd);
+    document.removeEventListener('keydown', onDragKey);
+    root.classList.remove('sm-dragging');
+    if (payload.nodes) payload.nodes.forEach(function (n) { n.classList.remove('sm-drag-src'); });
+    drag = null;
+    state.dragJustEnded = true; setTimeout(function () { state.dragJustEnded = false; }, 50);
+    if (!d) { if (state.current) select(state.current); return; }
+    var target;
+    if (d.container) target = { append: d.container };
+    else {
+      var g = group(d.ref);
+      target = d.before ? { before: g[0] } : { after: g[g.length - 1] };
+    }
+    if (payload.kind) { addContent(payload.kind, target); return; }
+    insertNodes(payload.nodes, payload.section ? 'section' : 'item', target);
+    if (payload.section) { syncNavOrder(); refreshTools(); }
+    select(payload.nodes[0]);
   }
 
   /* ---------------- fotos ---------------- */
@@ -960,7 +1420,7 @@
       var c = region.cloneNode(true);
       c.querySelectorAll('.sm-ui').forEach(function (n) { n.remove(); });
       c.querySelectorAll('[contenteditable]').forEach(function (n) { n.removeAttribute('contenteditable'); });
-      c.querySelectorAll('.sm-selected').forEach(function (n) { n.classList.remove('sm-selected'); });
+      c.querySelectorAll('.sm-selected, .sm-drag-src').forEach(function (n) { n.classList.remove('sm-selected', 'sm-drag-src'); });
       c.querySelectorAll('[data-sm-empty]').forEach(function (n) { n.removeAttribute('data-sm-empty'); });
       c.querySelectorAll('details[data-sm-wasopen]').forEach(function (d) {
         if (d.getAttribute('data-sm-wasopen') === '0') d.removeAttribute('open'); else d.setAttribute('open', '');
