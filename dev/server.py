@@ -170,6 +170,14 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         if not self.authed():
             return self.json(401, {'error': 'auth'})
         body = self.body()
+        if path == '/api/translate':
+            # En local no se llama a Claude: se marca el texto con [EN]/[ES] para probar el flujo.
+            html, src, dst = body.get('html', ''), body.get('from'), body.get('to')
+            if not html.strip() or src not in ('es', 'en') or dst not in ('es', 'en') or src == dst:
+                return self.json(400, {'error': 'input'})
+            time.sleep(0.6)
+            clean = re.sub(r'\[(EN|ES)\] ?', '', html)
+            return self.json(200, {'html': re.sub(r'^((?:<[^>]+>)*)', lambda m: m.group(1) + '[%s] ' % dst.upper(), sanitize(clean), count=1)})
         if path == '/api/upload':
             data = body.get('data', '')
             raw = base64.b64decode(data)
