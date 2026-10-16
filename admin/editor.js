@@ -114,33 +114,22 @@
     needDest: { es: 'Indica adónde lleva el enlace.', en: 'Say where the link goes.' },
     needPdf: { es: 'Elige un archivo PDF.', en: 'Choose a PDF file.' },
     badEmail: { es: 'Ese correo no parece válido.', en: 'That email does not look valid.' },
-    autoOn: { es: 'Traducción automática: sí', en: 'Auto-translate: on' },
-    autoOff: { es: 'Traducción automática: no', en: 'Auto-translate: off' },
-    autoOnMsg: { es: 'Al cambiar un texto, su versión en el otro idioma se traducirá sola.', en: 'When you change a text, its version in the other language is translated automatically.' },
-    autoOffMsg: { es: 'Traducción automática desactivada: edita cada idioma por separado.', en: 'Auto-translate off: edit each language separately.' },
-    translating: { es: 'Traduciendo…', en: 'Translating…' },
-    translatedEn: { es: 'Traducido al inglés ✓', en: 'Translated into English ✓' },
-    translatedEs: { es: 'Traducido al español ✓', en: 'Translated into Spanish ✓' },
-    translateOff: { es: 'La traducción automática no está configurada (falta ANTHROPIC_API_KEY en Vercel): edita también el otro idioma.', en: 'Auto-translate is not set up (ANTHROPIC_API_KEY missing in Vercel): edit the other language too.' },
-    translateError: { es: 'No se pudo traducir este texto; revisa el otro idioma a mano.', en: 'Could not translate this text; check the other language by hand.' },
     helpHtml: {
       es: '<h3>Cómo editar</h3><ul>' +
         '<li><strong>Textos</strong>: haz clic en cualquier texto y escribe. Selecciona palabras para ponerlas en <strong>negrita</strong>, <em>cursiva</em> o convertirlas en enlace con 🔗 (eliges el texto y adónde lleva: una web, un correo, una sección o un PDF).</li>' +
         '<li><strong>Elementos</strong>: al hacer clic en un párrafo, punto de lista, bloque o foto aparece una barra con ↑ ↓ (mover), ✂ y 📋 (cortar y pegar en otro sitio, también secciones enteras), ⧉ (duplicar) y 🗑 (eliminar). Con ⤴ seleccionas lo que lo contiene (el bloque, la sección…).</li>' +
         '<li><strong>Añadir</strong>: ＋ en la barra pequeña (o «＋ Añadir» abajo) para poner texto, un subtítulo, una lista, una foto, un botón, un bloque o una sección nueva. Se añade junto a lo que tengas seleccionado; una sección nueva aparece también en el menú.</li>' +
-        '<li><strong>Traducción</strong>: al terminar de cambiar un texto, su versión en el otro idioma se traduce sola. Se puede desactivar con «Traducción automática» abajo.</li>' +
         '<li><strong>Fotos</strong>: «Cambiar foto» en cada foto. Las fotos sin imagen no se ven en la web.</li>' +
         '<li><strong>Apuntes</strong>: «Subir PDF» junto a cada tema (máx. 3 MB).</li>' +
-        '<li><strong>Idiomas</strong>: cada texto existe en español y en inglés. Cambia a ES/EN arriba para ver o retocar cada versión.</li>' +
+        '<li><strong>Idiomas</strong>: cada texto existe en español y en inglés y se cambia en cada idioma por separado: cambia a EN arriba para editar la versión inglesa. Las fotos, el orden y los bloques y secciones nuevos o borrados son comunes a los dos idiomas.</li>' +
         '<li>Pulsa <strong>Guardar</strong> al terminar. La web pública se actualiza en 1–2 minutos. Si algo sale mal, en <strong>Historial</strong> puedes volver a una versión anterior.</li></ul>',
       en: '<h3>How to edit</h3><ul>' +
         '<li><strong>Text</strong>: click any text and type. Select words to make them <strong>bold</strong>, <em>italic</em> or a link with 🔗 (you choose the text and where it goes: a website, an email, a section or a PDF).</li>' +
         '<li><strong>Items</strong>: clicking a paragraph, list item, block or photo shows a bar with ↑ ↓ (move), ✂ and 📋 (cut and paste elsewhere, whole sections too), ⧉ (duplicate) and 🗑 (delete). ⤴ selects what contains it (the block, the section…).</li>' +
         '<li><strong>Add</strong>: ＋ in the small bar (or "＋ Add" below) to insert text, a subheading, a list, a photo, a button, a block or a new section. It is added next to your selection; a new section also appears in the menu.</li>' +
-        '<li><strong>Translation</strong>: when you finish changing a text, its version in the other language is translated automatically. You can turn this off with "Auto-translate" below.</li>' +
         '<li><strong>Photos</strong>: "Change photo" on each photo. Photos without an image are hidden on the site.</li>' +
         '<li><strong>Lecture notes</strong>: "Upload PDF" next to each topic (max 3 MB).</li>' +
-        '<li><strong>Languages</strong>: every text exists in Spanish and English. Switch to ES/EN at the top to see or fix each version.</li>' +
+        '<li><strong>Languages</strong>: every text exists in Spanish and English and is changed in each language separately: switch to ES at the top to edit the Spanish version. Photos, order, and added or deleted blocks and sections are shared by both languages.</li>' +
         '<li>Press <strong>Save</strong> when you are done. The public site updates in 1–2 minutes. If something goes wrong, <strong>History</strong> lets you go back to an earlier version.</li></ul>'
     }
   };
@@ -155,8 +144,7 @@
   var state = {
     authed: false, editing: false, dirty: false, busy: false, stale: false, publishing: null, staleDone: false,
     deployed: null, current: null, pending: {}, ui: {},
-    clip: null, translating: 0, pendingTranslations: [], translateOff: false,
-    autoTranslate: (function () { try { return localStorage.getItem('sm-autotranslate') !== '0'; } catch (e) { return true; } })()
+    clip: null
   };
 
   /* ---------------- utilidades ---------------- */
@@ -255,7 +243,6 @@
       '.sm-dialog .sm-pdf-current { color: #555; }' +
       '.sm-dialog .sm-remove { color: #b91c1c; }' +
       '.sm-dialog button[hidden] { display: none; }' +
-      'html.sm-editing .sm-flash { outline: 2px solid #22c55e !important; outline-offset: 3px; transition: outline-color 1.5s; }' +
       'html.sm-editing .photo.photo-inline.no-img { min-height: 160px; }' +
       '@media (max-width: 640px) { .sm-bar .sm-status { flex-basis: 100%; order: 3; } }';
     document.head.appendChild(el('style', { id: 'smEditorCSS' }, css));
@@ -320,14 +307,13 @@
     var bar = el('div', { class: 'sm-bar sm-chrome', role: 'region', 'aria-label': 'Editor' });
     bar.innerHTML = '<span class="sm-dot" aria-hidden="true"></span><span class="sm-mode"></span><span class="sm-status" aria-live="polite"></span>' +
       '<div class="sm-actions"><button type="button" data-a="toggle"></button><button type="button" data-a="add"></button><button type="button" data-a="save" class="sm-primary"></button>' +
-      '<button type="button" data-a="discard"></button><button type="button" data-a="history"></button><button type="button" data-a="translate"></button><button type="button" data-a="help"></button><button type="button" data-a="logout"></button></div>' +
+      '<button type="button" data-a="discard"></button><button type="button" data-a="history"></button><button type="button" data-a="help"></button><button type="button" data-a="logout"></button></div>' +
       '<div class="sm-warn" hidden><span></span><button type="button" data-a="reload"></button></div><div class="sm-hint"></div>';
     bar.addEventListener('mousedown', function (e) { if (e.target.closest('[data-a="add"]')) e.preventDefault(); });
     bar.addEventListener('click', function (e) {
       var b = e.target.closest('button[data-a]'); if (!b) return;
       ({ toggle: function () { state.editing ? stopEditing() : startEditing(); }, save: save, discard: discard,
         add: function () { if (!state.editing) startEditing(); openAddMenu(b); },
-        translate: function () { setAutoTranslate(!state.autoTranslate); },
         history: openHistory, help: openHelp, logout: logout, reload: function () { location.reload(); } })[b.getAttribute('data-a')]();
     });
     document.body.appendChild(bar);
@@ -343,17 +329,16 @@
     bar.classList.toggle('sm-is-dirty', state.dirty);
     bar.querySelector('.sm-mode').textContent = state.editing ? t('editing') : t('viewing');
     bar.querySelector('.sm-status').textContent = state.msg || (state.dirty ? t('dirty') : t('clean'));
-    var labels = { toggle: state.editing ? t('preview') : t('edit'), add: t('addBtn'), save: state.translating ? t('translating') : t('save'), discard: t('discard'), history: t('history'),
-      translate: state.autoTranslate ? t('autoOn') : t('autoOff'), help: t('help'), logout: t('logout'), reload: t('reload') };
+    var labels = { toggle: state.editing ? t('preview') : t('edit'), add: t('addBtn'), save: t('save'), discard: t('discard'), history: t('history'),
+      help: t('help'), logout: t('logout'), reload: t('reload') };
     bar.querySelectorAll('button[data-a]').forEach(function (b) { b.textContent = labels[b.getAttribute('data-a')]; });
-    bar.querySelector('[data-a="save"]').disabled = state.busy || !state.dirty || state.stale || state.translating > 0;
+    bar.querySelector('[data-a="save"]').disabled = state.busy || !state.dirty || state.stale;
     bar.querySelector('[data-a="add"]').hidden = !state.editing;
-    bar.querySelector('[data-a="translate"]').hidden = !state.editing || state.translateOff;
     bar.querySelector('[data-a="discard"]').disabled = state.busy || !state.dirty;
     var warn = bar.querySelector('.sm-warn');
     warn.hidden = !state.stale;
     warn.querySelector('span').textContent = state.staleDone ? t('staleDone') : t('stale');
-    bar.querySelector('.sm-hint').textContent = state.editing ? (state.autoTranslate && !state.translateOff ? t('autoOnMsg') : t('langHint')) : '';
+    bar.querySelector('.sm-hint').textContent = state.editing ? t('langHint') : '';
   }
 
   function setDirty() { state.dirty = true; state.msg = ''; renderBar(); }
@@ -494,8 +479,6 @@
     var sel = window.getSelection();
     if (!sel.rangeCount || !inRegion(sel.anchorNode && sel.anchorNode.parentElement)) return;
     document.execCommand(cmd, false, null);
-    var host = editableHost(sel.anchorNode);
-    if (host) markChanged(host);
     setDirty();
   }
 
@@ -622,7 +605,6 @@
     if (a && inRegion(a)) {
       var span = langSpan(a);
       var textNode = span || a;
-      var host = editableHost(textNode) || editableHost(a);
       linkDialog({ title: t('linkEdit'), text: textNode.textContent.trim(), href: a.getAttribute('href'), allowRemove: !a.classList.contains('btn') && !a.closest('nav') }).then(function (r) {
         if (!r) return;
         if (r.remove) {
@@ -630,12 +612,8 @@
           a.remove();
         } else {
           a.setAttribute('href', r.href); externalize(a);
-          if (r.text && r.text !== textNode.textContent.trim()) {
-            textNode.textContent = r.text;
-            if (span) translateNow(span); // botón con sus dos idiomas: traducir el otro
-          }
+          if (r.text && r.text !== textNode.textContent.trim()) textNode.textContent = r.text;
         }
-        if (host) { markChanged(host); translateNow(host); }
         setDirty();
       });
       return;
@@ -651,7 +629,6 @@
       externalize(link);
       range.deleteContents();
       range.insertNode(link);
-      markChanged(host2); translateNow(host2);
       setDirty();
     });
   }
@@ -848,11 +825,11 @@
       linkDialog({ title: t('linkNewButton'), text: '', href: '' }).then(function (r) {
         if (!r || r.remove) return;
         var row = el('div', { class: 'cta-row' });
+        // El mismo texto en los dos idiomas hasta que lo traduzca (si no, en el otro idioma el botón saldría vacío).
         var a = el('a', { class: 'btn btn-primary btn-sm', href: r.href }, both('', ''));
-        a.querySelector('.' + L()).textContent = r.text;
+        a.querySelectorAll('.es, .en').forEach(function (n) { n.textContent = r.text; });
         externalize(a); row.appendChild(a);
         insertNodes([row], 'item');
-        translateNow(a.querySelector('.' + L()));
       });
       return;
     }
@@ -883,53 +860,6 @@
       var range = document.createRange(); range.selectNodeContents(editable);
       var s = window.getSelection(); s.removeAllRanges(); s.addRange(range);
     }
-  }
-
-  /* ---------------- traducción automática ES ↔ EN ---------------- */
-  // Al terminar de editar un texto (salir de él), su traducción se rehace con
-  // Claude para que las dos versiones digan lo mismo.
-  function partnerOf(n) {
-    var lang = langOf(n); if (!lang) return null;
-    var other = lang === 'es' ? 'en' : 'es';
-    var sib = [n.nextElementSibling, n.previousElementSibling];
-    for (var i = 0; i < 2; i++) if (sib[i] && sib[i].tagName === n.tagName && sib[i].classList.contains(other)) return sib[i];
-    return null;
-  }
-  function markChanged(host) { if (host) host.__smChanged = true; }
-
-  function translateNow(host) {
-    if (!host || !state.autoTranslate || state.translateOff) return;
-    var partner = partnerOf(host); if (!partner) return;
-    var from = langOf(host), to = from === 'es' ? 'en' : 'es';
-    var html = host.innerHTML.trim();
-    if (!html.replace(/<[^>]*>/g, '').trim()) { partner.innerHTML = ''; setDirty(); return; }
-    var job = { host: host, html: html };
-    host.__smJob = job;
-    state.translating++;
-    renderBar(t('translating'));
-    var p = api('translate', { html: html, from: from, to: to }).then(function (r) {
-      if (host.__smJob !== job || host.innerHTML.trim() !== html) return; // se volvió a editar entretanto
-      partner.innerHTML = r.html;
-      partner.classList.add('sm-flash');
-      setTimeout(function () { partner.classList.remove('sm-flash'); }, 1600);
-      setDirty();
-      state.msg = to === 'en' ? t('translatedEn') : t('translatedEs');
-    }).catch(function (e) {
-      if (e.status === 503) { state.translateOff = true; state.msg = t('translateOff'); }
-      else if (e.status === 401) { state.authed = false; state.msg = t('expired'); openLogin(); }
-      else state.msg = t('translateError');
-    }).then(function () {
-      state.translating--;
-      state.pendingTranslations = state.pendingTranslations.filter(function (x) { return x !== p; });
-      renderBar();
-    });
-    state.pendingTranslations.push(p);
-  }
-
-  function setAutoTranslate(on) {
-    state.autoTranslate = on;
-    try { localStorage.setItem('sm-autotranslate', on ? '1' : '0'); } catch (e) {}
-    renderBar(on ? t('autoOnMsg') : t('autoOffMsg'));
   }
 
   /* ---------------- fotos ---------------- */
@@ -1030,7 +960,7 @@
       var c = region.cloneNode(true);
       c.querySelectorAll('.sm-ui').forEach(function (n) { n.remove(); });
       c.querySelectorAll('[contenteditable]').forEach(function (n) { n.removeAttribute('contenteditable'); });
-      c.querySelectorAll('.sm-selected, .sm-flash').forEach(function (n) { n.classList.remove('sm-selected', 'sm-flash'); });
+      c.querySelectorAll('.sm-selected').forEach(function (n) { n.classList.remove('sm-selected'); });
       c.querySelectorAll('[data-sm-empty]').forEach(function (n) { n.removeAttribute('data-sm-empty'); });
       c.querySelectorAll('details[data-sm-wasopen]').forEach(function (d) {
         if (d.getAttribute('data-sm-wasopen') === '0') d.removeAttribute('open'); else d.setAttribute('open', '');
@@ -1055,8 +985,6 @@
   function save() {
     if (state.busy || state.stale) return;
     if (!state.dirty) return;
-    flushAll();
-    if (state.translating) { renderBar(t('translating')); Promise.all(state.pendingTranslations).then(save); return; }
     if (state.clip && !window.confirm(t('clipLost'))) return;
     state.clip = null;
     state.busy = true; renderBar(t('saving'));
@@ -1160,35 +1088,12 @@
     select(itemFor(e.target));
   }, true);
 
-  // Un texto cambiado se traduce al otro idioma al salir de él o tras unos
-  // segundos sin escribir (y, si quedara alguno pendiente, antes de guardar).
-  var TRANSLATE_IDLE_MS = 2500;
   document.addEventListener('input', function (e) {
     if (!state.editing || !inRegion(e.target)) return;
     var host = editableHost(e.target);
-    if (host) {
-      markChanged(host);
-      clearTimeout(host.__smTimer);
-      host.__smTimer = setTimeout(function () { flushHost(host); }, TRANSLATE_IDLE_MS);
-    }
+    if (host) syncNavLabel(host);
     setDirty();
   });
-  document.addEventListener('focusout', function (e) {
-    var host = e.target && e.target.closest && e.target.closest('[contenteditable="true"]');
-    if (state.editing && host && inRegion(host)) flushHost(host);
-  }, true);
-
-  function flushHost(host) {
-    clearTimeout(host.__smTimer);
-    if (!host.__smChanged || !host.isConnected) return;
-    host.__smChanged = false;
-    syncNavLabel(host);
-    translateNow(host);
-    host.__smBefore = host.textContent.trim();
-  }
-  function flushAll() {
-    document.querySelectorAll('[data-region] [contenteditable="true"]').forEach(function (n) { if (n.__smChanged) flushHost(n); });
-  }
 
   // Si se cambia el antetítulo de una sección y su enlace del menú decía lo mismo,
   // el enlace del menú se actualiza también (así las secciones nuevas no se quedan
@@ -1199,9 +1104,10 @@
     var link = navRegion() && navRegion().querySelector('a[href="#' + sec.id + '"]'); if (!link) return;
     var lang = langOf(host) || L();
     var span = link.querySelector(':scope > .' + lang) || link;
-    if (span.textContent.trim() !== (host.__smBefore || '')) return;
-    span.textContent = host.textContent.trim();
-    if (span !== link) translateNow(span);
+    var text = host.textContent.trim();
+    if (span.textContent.trim() !== (host.__smBefore || '')) { host.__smBefore = text; return; }
+    span.textContent = text;
+    host.__smBefore = text; // para seguir sincronizando mientras escribe
   }
 
   // Pegar siempre como texto sin formato (evita traer estilos de Word o de otras webs).

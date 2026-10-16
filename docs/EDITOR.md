@@ -21,11 +21,12 @@ la web en uno o dos minutos.
    ese enlace solo.
 4. Fotos: botón **«Cambiar foto»** sobre cada foto (se reducen solas a 1800 px). **«Quitar»** la oculta.
 5. Apuntes: botón **«Subir PDF»** junto a cada tema (máximo 3 MB por archivo).
-6. Cada texto existe en español y en inglés. **Traducción automática**: al terminar de cambiar un texto (al salir de
-   él o tras unos segundos sin escribir) su versión en el otro idioma se traduce sola con Claude, en los dos
-   sentidos. Se puede desactivar con «Traducción automática» en la barra para retocar una traducción a mano (y
-   volver a activarla). Con **ES / EN** de la cabecera se ve cada versión. Un texto y su traducción se mueven,
-   duplican y eliminan juntos.
+6. Cada **texto** existe en español y en inglés y se cambia en cada idioma por separado: con **ES / EN** de la
+   cabecera se elige la versión que se edita. **Todo lo demás es común a los dos idiomas**: las fotos, el orden, y
+   los bloques, secciones y elementos que se añaden, mueven, duplican o eliminan (un texto y su traducción siempre
+   van juntos). Lo nuevo aparece en los dos idiomas con un texto provisional que hay que cambiar en cada uno. Un
+   botón nuevo empieza con el mismo texto en los dos idiomas; un enlace dentro de una frase pertenece a esa frase, así
+   que hay que ponerlo también en la frase del otro idioma.
 7. **Guardar**. La barra dice «Publicando…» unos 30–60 segundos y luego «Publicado ✓»: hasta entonces, recargar la
    página muestra todavía la versión anterior (no es que no se haya guardado). Si algo sale mal:
    **Historial → Restaurar** vuelve a poner el contenido de una versión anterior.
@@ -49,7 +50,6 @@ así que el editor no puede romper el diseño ni bloquearse a sí mismo el acces
 | `api/login.js`, `api/logout.js`, `api/session.js` | Sesión: cookie firmada (HMAC, `HttpOnly`, `SameSite=Strict`, 12 h). Cambiar `ADMIN_PASSWORD` cierra todas las sesiones. |
 | `api/upload.js` | Sube una foto o PDF a GitHub como *blob* (aún sin publicar). |
 | `api/save.js` | Sustituye las zonas editables en `index.html` y crea **un solo commit** con el HTML y los archivos subidos. Limpia `<script>`, `on…=` y `javascript:` del contenido. |
-| `api/translate.js` | Traduce un fragmento ES ↔ EN con Claude (`claude-opus-5-5`, esfuerzo bajo, con *fallback* del servidor), conservando etiquetas y enlaces. Solo para el editor autenticado. |
 | `api/history.js` | Lista las últimas versiones de `index.html` y restaura las zonas editables de una de ellas (sin deshacer cambios de código posteriores). |
 | `api/_lib/` | Código compartido (no se publica como función). |
 
@@ -66,7 +66,6 @@ En Vercel → proyecto `organization-deportiva-` → **Settings → Environment 
 | `GITHUB_TOKEN` | Token *fine-grained* de GitHub: **Repository access** → solo `organization-deportiva-`; **Permissions** → *Contents: Read and write*. Ponerle caducidad larga y apuntar la fecha. |
 | `GITHUB_REPO` | `andreasssbh/organization-deportiva-` (valor por defecto). |
 | `GITHUB_BRANCH` | La rama de producción de Vercel: `main` (valor por defecto). |
-| `ANTHROPIC_API_KEY` | Clave de la API de Claude para la traducción automática (console.anthropic.com → API keys). Sin ella el editor funciona, pero avisa de que hay que editar los dos idiomas a mano. Coste orientativo: céntimos al mes con un uso normal. |
 
 Después, volver a desplegar (*Deployments → Redeploy*) para que las funciones lean las variables.
 
@@ -80,8 +79,7 @@ python3 dev/server.py        # → http://localhost:8787/#acceso
 ```
 
 `dev/server.py` imita las funciones de `api/` guardando en una copia (`.dev-site/`), sin GitHub ni Vercel; el
-`index.html` del repositorio no se modifica. La traducción local no llama a Claude: marca el texto con `[EN]`/`[ES]`
-para probar el flujo.
+`index.html` del repositorio no se modifica.
 
 ## Límites
 

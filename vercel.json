@@ -1,5 +1,0 @@
-{
-  "functions": {
-    "api/translate.js": { "maxDuration": 60 }
-  }
-}

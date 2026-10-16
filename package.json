@@ -1,8 +1,0 @@
-{
-  "name": "organizaciondeportiva",
-  "private": true,
-  "description": "Sitio de Sport Management · Organización del Deporte. index.html es estático; api/ son las funciones del editor en Vercel.",
-  "dependencies": {
-    "@anthropic-ai/sdk": "0.131.0"
-  }
-}
