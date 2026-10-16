@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sport Management · Organización del Deporte</title>
-  <meta name="description" content="Sport Management European Research Group (Universidad Europea de Madrid): apuntes de Organización del Deporte, bibliografía, grupos de investigación, PRODET®, enlaces y recursos sobre organización y gestión del deporte.">
+  <meta name="description" content="Sport Management European Research Group: apuntes de Organización del Deporte, bibliografía, grupos de investigación, PRODET®, enlaces y recursos sobre organización y gestión del deporte.">
   <meta name="theme-color" content="#d92b23">
-  <link rel="icon" href="images/logo-ue.svg" type="image/svg+xml">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23d92b23'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='%23fff' text-anchor='middle'%3ESM%3C/text%3E%3C/svg%3E">
 
   <!--
     ============================================================================
@@ -18,8 +18,6 @@
       por defecto).
     · Bilingüe ES / EN: cada texto existe en dos variantes con las clases .es y
       .en; el atributo data-lang de <html> decide cuál se muestra.
-    · LOGO UE: images/logo-ue.svg (claro) y images/logo-ue-dark.svg (oscuro),
-      enlazado a UE_URL (ver script). Cambiar la URL ahí si hace falta.
     · APUNTES: cada tema tiene un botón "PDF" que apunta a apuntes/tema-N.pdf.
       Si el archivo existe en el servidor, el botón se activa solo; si no,
       muestra "Próximamente". Ver apuntes/README.md.
@@ -29,6 +27,10 @@
       Nombres y proporciones en images/README.md.
     · CONTACTO: correo de Víctor Jiménez en "Nosotros", tutorías, PRODET® y
       "Contacto". Para cambiarlo: buscar y reemplazar la dirección.
+    · EDITOR: el Dr. Víctor Jiménez puede editar la página desde el propio
+      sitio («Acceso editor», en el pie). Solo se edita lo que está entre
+      los comentarios «editable:nav/main/footer»; cada «Guardar» es un commit
+      en GitHub. Ver docs/EDITOR.md.
     · Cada sección conserva, en un comentario, la URL original de Joomla.
     · Los enlaces externos se abren en pestaña nueva (rel="noopener").
     ============================================================================
@@ -94,21 +96,12 @@
     .header-inner { display: flex; align-items: center; gap: 16px; min-height: 72px; }
     .brand { display: flex; align-items: center; gap: 14px; color: var(--text); }
     .brand:hover { text-decoration: none; }
-    .brand-logo { display: block; height: 42px; }
-    .brand-logo img { height: 42px; width: auto; }
-    img.logo-light { display: block; }
-    img.logo-dark { display: none; }
-    html[data-theme="dark"] img.logo-light { display: none; }
-    html[data-theme="dark"] img.logo-dark { display: block; }
-    @media (prefers-color-scheme: dark) {
-      html:not([data-theme="light"]) img.logo-light { display: none; }
-      html:not([data-theme="light"]) img.logo-dark { display: block; }
-    }
-    .brand-sep { width: 1px; height: 34px; background: var(--line); }
+    .brand-mark { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 10px; background: var(--red); color: #fff; font-weight: 900; font-size: 1.05rem; letter-spacing: .02em; flex: none; }
+    .brand-mark:hover { text-decoration: none; background: var(--red-strong); }
     .brand-text { display: flex; flex-direction: column; line-height: 1.1; font-weight: 800; color: var(--text); }
     .brand-text small { font-weight: 500; color: var(--text-muted); font-size: .75rem; }
     /* Entre 1240 y 1440 px se oculta el rótulo para que el menú quepa en una línea. */
-    @media (max-width: 1440px) { .brand-text { display: none; } .brand-sep { display: none; } }
+    @media (max-width: 1440px) { .brand-text { display: none; } }
     .nav { margin-left: auto; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 2px; min-width: 0; }
     .nav a { color: var(--text); padding: 8px 10px; border-radius: 8px; font-weight: 600; font-size: .9rem; white-space: nowrap; }
     .nav a:hover { background: var(--bg-soft); text-decoration: none; }
@@ -128,7 +121,7 @@
       .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; align-items: stretch; background: var(--surface); border-bottom: 3px solid var(--red); padding: 8px 16px 16px; box-shadow: var(--shadow); }
       .nav.open { display: flex; }
       .nav a { padding: 12px; }
-      .brand-text { display: none; } .brand-sep { display: none; }
+      .brand-text { display: none; }
     }
 
     /* ---------- Aviso ---------- */
@@ -242,8 +235,8 @@
     footer strong { color: var(--text); }
     footer a { color: var(--text); }
     footer nav { display: flex; flex-wrap: wrap; gap: 14px; }
-    footer .ue { display: inline-flex; align-items: center; gap: 8px; }
-    footer .ue img { height: 26px; width: auto; }
+    footer .footer-access { margin-top: 18px; justify-content: flex-end; }
+    footer .footer-access a { color: var(--text-muted); font-size: .8rem; }
 
     /* ---------- i18n ---------- */
     html[data-lang="es"] .en { display: none !important; }
@@ -260,19 +253,14 @@
 <header class="site-header">
   <div class="container header-inner">
     <div class="brand">
-      <!-- Logo de la Universidad Europea: enlaza al sitio de la UE (URL en el script: UE_URL) -->
-      <a class="brand-logo" data-ue-link href="https://universidadeuropea.com/" target="_blank" rel="noopener" aria-label="Universidad Europea — sitio web" title="Universidad Europea">
-        <img class="logo-light" src="images/logo-ue.svg" alt="Universidad Europea" width="153" height="42">
-        <img class="logo-dark" src="images/logo-ue-dark.svg" alt="Universidad Europea" width="153" height="42">
-      </a>
-      <span class="brand-sep" aria-hidden="true"></span>
+      <a class="brand-mark" href="#inicio" aria-label="Sport Management — inicio">SM</a>
       <a class="brand-text" href="#inicio">
         <span>Sport Management</span>
         <small><span class="es">Organización del Deporte</span><span class="en">Sports Organisation</span></small>
       </a>
     </div>
 
-    <nav class="nav" id="nav" aria-label="Principal">
+    <nav class="nav" id="nav" aria-label="Principal" data-region="nav"><!--editable:nav-->
       <a href="#inicio"><span class="es">Inicio</span><span class="en">Home</span></a>
       <a href="#apuntes"><span class="es">Apuntes</span><span class="en">Lecture notes</span></a>
       <a href="#docencia"><span class="es">Docencia</span><span class="en">Teaching</span></a>
@@ -282,7 +270,7 @@
       <a href="#galeria"><span class="es">Galería</span><span class="en">Gallery</span></a>
       <a href="#media">Media</a>
       <a href="#contacto"><span class="es">Contacto</span><span class="en">Contact</span></a>
-    </nav>
+    <!--/editable:nav--></nav>
 
     <div class="controls">
       <div class="lang-switch" role="group" aria-label="Idioma / Language">
@@ -310,14 +298,14 @@
   </div>
 </div>
 
-<main id="main">
+<main id="main" data-region="main"><!--editable:main-->
 
 <!-- =============================== HERO / INICIO =============================== -->
 <!-- Origen: https://organizaciondeportiva.org/ -->
 <section class="hero" id="inicio">
   <div class="container">
     <div class="hero-copy">
-      <span class="eyebrow">Universidad Europea de Madrid</span>
+      <span class="eyebrow"><span class="es">Organización del Deporte</span><span class="en">Sports Organisation</span></span>
       <h1>Sport Management European Research Group</h1>
       <p class="lead">
         <span class="es">Apuntes, docencia e investigación sobre la Organización del Deporte. Todo el material de la asignatura y los recursos del grupo de investigación, en un solo sitio.</span>
@@ -330,7 +318,6 @@
       <div class="cta-row">
         <a class="btn btn-primary" href="#apuntes">📚 <span class="es">Ver los apuntes</span><span class="en">View the lecture notes</span></a>
         <a class="btn btn-outline" href="#investigacion"><span class="es">Investigación</span><span class="en">Research</span></a>
-        <a class="btn btn-outline" href="https://universidadeuropea.com/" data-ue-link target="_blank" rel="noopener">Universidad Europea ↗</a>
       </div>
       <div class="hero-stats" aria-label="Resumen">
         <div class="stat"><strong>5</strong><span><span class="es">temas de apuntes</span><span class="en">lecture-note topics</span></span></div>
@@ -476,8 +463,8 @@
           <figcaption><span class="es">El grupo en la Universidad Europea de Madrid</span><span class="en">The group at Universidad Europea de Madrid</span></figcaption>
         </figure>
         <h3><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="es">El grupo</span><span class="en">The group</span></h3>
-        <p class="es">Sport Management es el grupo de investigación europeo en gestión del deporte (<em>Sport Management European Research Group</em>) vinculado a la <a href="https://universidadeuropea.com/" data-ue-link target="_blank" rel="noopener">Universidad Europea de Madrid</a>. Reúne a docentes e investigadores de distintas universidades españolas dedicados a la organización y gestión deportiva.</p>
-        <p class="en">Sport Management is the European research group in sport management (<em>Sport Management European Research Group</em>) linked to <a href="https://universidadeuropea.com/" data-ue-link target="_blank" rel="noopener">Universidad Europea de Madrid</a>. It brings together lecturers and researchers from several Spanish universities devoted to sports organisation and management.</p>
+        <p class="es">Sport Management es el grupo de investigación europeo en gestión del deporte (<em>Sport Management European Research Group</em>) vinculado a la Universidad Europea de Madrid. Reúne a docentes e investigadores de distintas universidades españolas dedicados a la organización y gestión deportiva.</p>
+        <p class="en">Sport Management is the European research group in sport management (<em>Sport Management European Research Group</em>) linked to Universidad Europea de Madrid. It brings together lecturers and researchers from several Spanish universities devoted to sports organisation and management.</p>
         <p class="es">Una asociación que da cabida a todas las personas que están interesadas en trabajar por y para la educación en igualdad.</p>
         <p class="en">An association open to everyone interested in working for and towards education in equality.</p>
       </article>
@@ -740,7 +727,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow"><span class="es">Contacto</span><span class="en">Contact</span></span>
-      <h2><span class="es">Contacto y área de usuarios</span><span class="en">Contact and user area</span></h2>
+      <h2><span class="es">Contacto</span><span class="en">Contact</span></h2>
     </div>
     <div class="contact-box">
       <div class="card">
@@ -754,33 +741,16 @@
         </div>
         <div class="copied" data-copied></div>
       </div>
-      <div class="card">
-        <h3><span class="es">Formulario del sitio</span><span class="en">Site contact form</span></h3>
-        <p class="es">También puedes usar el formulario de contacto del sitio original.</p>
-        <p class="en">You can also use the original site's contact form.</p>
-        <a class="btn btn-outline btn-sm" href="https://organizaciondeportiva.org/index.php?option=com_mailto&tmpl=component&template=protostar&link=4bf9b32d78bdebd2d8ef72c927cb52c7ee8e39ff" target="_blank" rel="noopener"><span class="es">Formulario de contacto</span><span class="en">Contact form</span> ↗</a>
-      </div>
-      <div class="card" id="usuarios">
-        <h3><span class="es">Área de usuarios</span><span class="en">User area</span></h3>
-        <p class="es">Crea una cuenta para acceder a los contenidos reservados a usuarios registrados.</p>
-        <p class="en">Create an account to access content reserved for registered users.</p>
-        <div class="cta-row">
-          <!-- TODO (base de datos): sustituir por registro.html / login.html — ver docs/BASE-DE-DATOS.md -->
-          <a class="btn btn-outline btn-sm" href="https://organizaciondeportiva.org/index.php?option=com_users&view=registration" target="_blank" rel="noopener"><span class="es">Registro</span><span class="en">Register</span> ↗</a>
-          <a class="btn btn-outline btn-sm" href="https://organizaciondeportiva.org/index.php?option=com_users&view=login" target="_blank" rel="noopener"><span class="es">Iniciar sesión</span><span class="en">Log in</span> ↗</a>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
-</main>
+<!--/editable:main--></main>
 
 <!-- =============================== PIE =============================== -->
 <footer>
-  <div class="container">
+  <div class="container" data-region="footer"><!--editable:footer-->
     <div>
-      <a class="ue" href="https://universidadeuropea.com/" data-ue-link target="_blank" rel="noopener"><img class="logo-light" src="images/logo-ue.svg" alt="Universidad Europea"><img class="logo-dark" src="images/logo-ue-dark.svg" alt="Universidad Europea"></a>
       <div>© 2015–2025 <strong>Sport Management</strong> · <span class="es">Organización del Deporte</span><span class="en">Sports Organisation</span> · Dr. Víctor Jiménez Díaz-Benito</div>
     </div>
     <nav aria-label="Pie de página">
@@ -789,8 +759,10 @@
       <a href="#prodet">PRODET®</a>
       <a href="#bibliografia"><span class="es">Bibliografía</span><span class="en">Bibliography</span></a>
       <a href="#enlaces"><span class="es">Enlaces</span><span class="en">Links</span></a>
-      <a href="https://organizaciondeportiva.org/" target="_blank" rel="noopener"><span class="es">Sitio original</span><span class="en">Original site</span> ↗</a>
     </nav>
+  <!--/editable:footer--></div>
+  <div class="container footer-access">
+    <a href="#acceso" data-editor-login><span class="es">Acceso editor</span><span class="en">Editor login</span></a>
   </div>
 </footer>
 
@@ -802,8 +774,6 @@
 
   // Poner en false cuando el contenido esté verificado contra el sitio original.
   var SHOW_VERIFY_NOTICE = true;
-  // Sitio al que enlaza el logo de la Universidad Europea (cabecera, hero, pie).
-  var UE_URL = 'https://universidadeuropea.com/';
 
   var root = document.documentElement;
   var TITLES = { es: 'Sport Management · Organización del Deporte', en: 'Sport Management · Sports Organisation' };
@@ -815,8 +785,6 @@
   function safeGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function safeSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   function lang() { return root.getAttribute('data-lang') === 'en' ? 'en' : 'es'; }
-
-  document.querySelectorAll('[data-ue-link]').forEach(function (a) { a.href = UE_URL; });
 
   /* ---------- Idioma ---------- */
   function setLang(l, persist) {
@@ -856,6 +824,7 @@
   /* ---------- Fotos: se muestran si el archivo existe en images/ ---------- */
   document.querySelectorAll('figure.photo[data-src]').forEach(function (fig) {
     var img = fig.querySelector('img'); if (!img) return;
+    if (!fig.getAttribute('data-src')) { fig.classList.add('no-img'); return; }
     img.addEventListener('load', function () { fig.classList.add('has-img'); fig.classList.remove('no-img'); });
     img.addEventListener('error', function () { fig.classList.remove('has-img'); fig.classList.add('no-img'); });
     img.src = fig.getAttribute('data-src');
@@ -887,6 +856,15 @@
   var notice = document.getElementById('verifyNotice');
   if (SHOW_VERIFY_NOTICE && !safeGet('sm-notice-dismissed')) notice.hidden = false;
   document.getElementById('dismissNotice').addEventListener('click', function () { notice.hidden = true; safeSet('sm-notice-dismissed', '1'); });
+
+  /* ---------- Editor del sitio (solo se carga para el editor o en #acceso) ---------- */
+  function loadEditor() {
+    if (window.SM_EDITOR) { window.SM_EDITOR.openLogin(); return; }
+    if (document.getElementById('smEditorScript')) return;
+    var s = document.createElement('script'); s.id = 'smEditorScript'; s.src = 'admin/editor.js'; document.body.appendChild(s);
+  }
+  if (/(^|;\s*)sm_editor=1/.test(document.cookie) || location.hash === '#acceso') loadEditor();
+  window.addEventListener('hashchange', function () { if (location.hash === '#acceso') loadEditor(); });
 })();
 </script>
 </body>

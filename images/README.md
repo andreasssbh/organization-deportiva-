@@ -2,7 +2,7 @@
 
 Cada hueco de foto de `index.html` es un `<figure class="photo" data-src="images/…">`. La página carga el archivo
 indicado: **si existe se muestra con su leyenda; si no existe, el hueco se oculta** y no deja ningún rastro en la
-página. Para cambiar una foto basta con sustituir el archivo conservando el nombre.
+página. Para cambiar una foto basta con sustituir el archivo conservando el nombre, o usar «Cambiar foto» desde el editor del sitio (ver [`docs/EDITOR.md`](../docs/EDITOR.md)).
 
 Formato recomendado: JPG, ≤ 500 KB por foto.
 
@@ -27,11 +27,6 @@ Formato recomendado: JPG, ≤ 500 KB por foto.
 |---|---|---|
 | `prodet.jpg` | Tarjeta PRODET® (sección Investigación) | panorámica 16:7 |
 | `la-finta.jpg` | Media & Management (La Finta) | 4:3 |
-
-## Logo
-
-`logo-ue.svg` (modo claro) y `logo-ue-dark.svg` (modo oscuro, texto en blanco): logo de la Universidad Europea en la
-cabecera y en el pie, enlazado a la URL de `UE_URL` en el script de `index.html`.
 
 ## Añadir más fotos a la galería
 

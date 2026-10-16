@@ -38,20 +38,24 @@ La lista completa de nombres, proporciones y contenidos está en [`images/README
 La sección `#apuntes` es la principal del sitio: cinco temas con un botón «PDF». Guarda `apuntes/tema-N.pdf` y el
 botón se activa solo (ver [`apuntes/README.md`](apuntes/README.md)).
 
-## Logo y enlace de la Universidad Europea
+## Marca
 
-El logo de la UE (`images/logo-ue.svg`, variante oscura `images/logo-ue-dark.svg`) va arriba a la izquierda y en el
-pie, enlazado a la URL definida en `UE_URL` (script de `index.html`). Cambia esa constante para apuntar a otra página.
+No hay logo de la Universidad Europea (el sitio no es una web oficial de la universidad). La cabecera lleva un
+distintivo «SM» en rojo, que también es el icono de la pestaña.
 
 ## Contacto: Víctor Jiménez
 
 El correo `victor.jimenez@universidadeuropea.es` aparece en la ficha de "Nosotros", en tutorías, en PRODET® y en la
 sección "Contacto". Para cambiarlo, buscar y reemplazar esa dirección en `index.html`.
 
-## Registro / inicio de sesión
+## Editor del sitio (acceso de Víctor)
 
-Los botones «Registro» e «Iniciar sesión» todavía apuntan al Joomla antiguo. El plan para sustituirlos por una base de
-datos propia está en [`docs/BASE-DE-DATOS.md`](docs/BASE-DE-DATOS.md).
+El Dr. Víctor Jiménez puede editar textos, fotos y PDF desde la propia web («Acceso editor», en el pie). Cada
+«Guardar» crea un commit en GitHub y Vercel publica la nueva versión. Uso, configuración (variables de entorno en
+Vercel) y funcionamiento en [`docs/EDITOR.md`](docs/EDITOR.md).
+
+El sitio antiguo (Joomla) ya no existe: se han quitado todos los enlaces que llevaban a él (formulario de contacto,
+registro, inicio de sesión y «Sitio original»).
 
 ## Correspondencia con el sitio original
 

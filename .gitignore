@@ -2,3 +2,7 @@
 node_modules/
 .DS_Store
 *.log
+
+# Editor: configuración local y copia de prueba (dev/server.py)
+.env.local
+.dev-site/

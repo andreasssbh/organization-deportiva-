@@ -1,3 +1,7 @@
+> **Note (octobre 2026)** : les boutons « Registro » / « Iniciar sesión » de l'ancien Joomla ont été retirés (le site
+> d'origine n'existe plus). L'accès éditeur de Víctor est implémenté sans base de données : voir
+> [`EDITOR.md`](EDITOR.md). Ce plan Supabase ne reste utile que si l'on veut un jour des comptes pour les étudiants.
+
 # Base de données : remplacer « Registro » et « Iniciar sesión » de l'ancien Joomla
 
 Objectif : que le nouveau site remplace complètement l'ancien, y compris l'espace utilisateurs (inscription,
