@@ -8,13 +8,15 @@ de Vercel (api/*.js) guardando en esa copia en lugar de hacer commits, así que
 el index.html del repositorio no se toca. La contraseña se lee de
 ADMIN_PASSWORD en .env.local (ver .env.example).
 """
-import base64, hashlib, hmac, http.server, json, os, re, shutil, time, uuid
+import base64, hashlib, hmac, http.server, json, os, re, shutil, threading, time, uuid
 from http import cookies
 from urllib.parse import urlparse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, '.dev-site')
 PORT = int(os.environ.get('PORT', '8787'))
+PUBLISH_DELAY = float(os.environ.get('PUBLISH_DELAY', '8'))
+SERVER = None
 REGIONS = ['nav', 'main', 'footer']
 FILE_PATH = re.compile(r'^(images/[a-z0-9][a-z0-9._-]*\.(jpe?g|png|webp|gif)|apuntes/[a-z0-9][a-z0-9._-]*\.pdf)$')
 
@@ -82,6 +84,8 @@ def commit(html, files, message):
     open(index_path(), 'w', encoding='utf-8').write(html)
     sha = hashlib.sha1(uuid.uuid4().bytes).hexdigest()
     versions.insert(0, {'sha': sha, 'date': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), 'message': message, 'html': html})
+    # Como Vercel: la versión nueva se da por «publicada» unos segundos después del commit.
+    threading.Timer(PUBLISH_DELAY, lambda: setattr(SERVER, 'deployed', sha)).start()
     return sha
 
 
@@ -149,9 +153,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             if not self.authed():
                 return self.json(401, {'error': 'auth'})
             return self.json(200, {'versions': [{k: v[k] for k in ('sha', 'date', 'message')} for v in versions]})
-        if path in ('/', '/index.html'):
-            # Como en Vercel tras publicar: la página servida pasa a ser la última versión.
-            self.server.deployed = self.head_sha()
         return super().do_GET()
 
     def do_POST(self):
@@ -207,7 +208,7 @@ if __name__ == '__main__':
                      'html': open(index_path(), encoding='utf-8').read()})
     if not PASSWORD:
         print('Aviso: ADMIN_PASSWORD no está definido en .env.local; el acceso estará desactivado.')
-    srv = http.server.ThreadingHTTPServer(('127.0.0.1', PORT), Handler)
+    srv = SERVER = http.server.ThreadingHTTPServer(('127.0.0.1', PORT), Handler)
     srv.deployed = 'initial'
     print('Sitio de prueba en http://localhost:%d' % PORT)
     srv.serve_forever()

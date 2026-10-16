@@ -42,6 +42,11 @@
     saving: { es: 'Guardando…', en: 'Saving…' },
     uploading: { es: 'Subiendo archivo…', en: 'Uploading file…' },
     saved: { es: 'Guardado ✓ La web pública se actualiza en 1–2 minutos.', en: 'Saved ✓ The public site updates in 1–2 minutes.' },
+    publishing: { es: 'Guardado ✓ Publicando en la web… (unos 30–60 s, no recargues todavía)', en: 'Saved ✓ Publishing to the site… (about 30–60 s, do not reload yet)' },
+    published: { es: 'Publicado ✓ Los cambios ya están en la web.', en: 'Published ✓ The changes are live.' },
+    publishSlow: { es: 'Guardado ✓ La publicación está tardando más de lo normal; los cambios aparecerán en unos minutos.', en: 'Saved ✓ Publishing is taking longer than usual; the changes will appear in a few minutes.' },
+    staleDone: { es: 'La versión nueva ya está publicada. Recarga la página para verla y seguir editando.', en: 'The new version is now live. Reload the page to see it and keep editing.' },
+    leaveWhilePublishing: { es: 'Los cambios se están publicando. Si recargas ahora verás la versión anterior unos segundos.', en: 'Changes are being published. If you reload now you will see the previous version for a few seconds.' },
     saveError: { es: 'No se pudo guardar: ', en: 'Could not save: ' },
     expired: { es: 'La sesión ha caducado. Vuelve a entrar y pulsa «Guardar» otra vez: tus cambios siguen en la página.', en: 'Your session expired. Log in again and press "Save" again: your changes are still on the page.' },
     stale: { es: 'Hay una versión más reciente de la página publicándose. Espera un minuto y recarga antes de editar (si guardas ahora podrías borrar esos cambios).', en: 'A newer version of the page is being published. Wait a minute and reload before editing (saving now could overwrite those changes).' },
@@ -102,7 +107,7 @@
   var MAX_FILE = 3.3 * 1024 * 1024;
 
   var state = {
-    authed: false, editing: false, dirty: false, busy: false, stale: false,
+    authed: false, editing: false, dirty: false, busy: false, stale: false, publishing: null, staleDone: false,
     deployed: null, current: null, pending: {}, ui: {}
   };
 
@@ -236,6 +241,7 @@
       state.authed = true;
       state.deployed = s.deployed || null;
       state.stale = Boolean(s.deployed && s.latest && s.deployed !== s.latest);
+      state.latest = s.latest || null;
       return s;
     });
   }
@@ -273,7 +279,7 @@
     bar.querySelector('[data-a="discard"]').disabled = state.busy || !state.dirty;
     var warn = bar.querySelector('.sm-warn');
     warn.hidden = !state.stale;
-    warn.querySelector('span').textContent = t('stale');
+    warn.querySelector('span').textContent = state.staleDone ? t('staleDone') : t('stale');
     bar.querySelector('.sm-hint').textContent = state.editing ? t('langHint') : '';
   }
 
@@ -613,18 +619,42 @@
     if (!state.dirty) return;
     state.busy = true; renderBar(t('saving'));
     var files = Object.keys(state.pending).map(function (k) { return state.pending[k]; });
-    api('save', { regions: serialize(), files: files, base: state.deployed }).then(function () {
+    api('save', { regions: serialize(), files: files, base: state.deployed }).then(function (r) {
       state.busy = false; state.dirty = false; state.pending = {};
-      // La página publicada tardará un poco en reflejar este guardado.
+      // La página abierta ya es la versión guardada: los siguientes guardados no necesitan comprobar la base.
       state.deployed = null;
-      try { sessionStorage.setItem('sm-saved-at', String(Date.now())); } catch (e) {}
-      renderBar(t('saved'));
+      if (r.commit) waitForPublish(r.commit, false); else renderBar(t('saved'));
     }).catch(function (e) {
       state.busy = false;
       if (e.status === 401) { state.authed = false; state.retrySave = true; renderBar(t('expired')); openLogin(); }
       else if (e.status === 409) { state.stale = true; renderBar(t('staleSave')); }
       else renderBar(t('saveError') + e.message);
     });
+  }
+
+  // Vercel tarda unos segundos en publicar cada commit. Mientras tanto, recargar
+  // muestra la versión anterior y parece que no se ha guardado: se avisa hasta
+  // que la versión publicada coincide con la guardada.
+  function waitForPublish(commit, reloadNeeded) {
+    var started = Date.now(), token = {};
+    state.publishing = token;
+    if (!reloadNeeded) renderBar(t('publishing'));
+    (function poll() {
+      setTimeout(function () {
+        if (state.publishing !== token) return;
+        api('session').then(function (s) {
+          if (state.publishing !== token) return;
+          if (!s.deployed) { state.publishing = null; renderBar(reloadNeeded ? '' : t('saved')); return; }
+          if (s.deployed === commit) {
+            state.publishing = null;
+            if (reloadNeeded) { state.staleDone = true; renderBar(''); } else renderBar(t('published'));
+            return;
+          }
+          if (Date.now() - started > 5 * 60 * 1000) { state.publishing = null; renderBar(reloadNeeded ? '' : t('publishSlow')); return; }
+          poll();
+        }).catch(function () { if (Date.now() - started < 5 * 60 * 1000) poll(); else state.publishing = null; });
+      }, 4000);
+    })();
   }
 
   function discard() {
@@ -660,7 +690,7 @@
             if (!window.confirm(t('confirmRestore'))) return;
             b.disabled = true;
             // La página abierta ya no es la versión guardada: no dejar guardar encima hasta recargar.
-            api('history', { sha: v.sha }).then(function () { close(); state.dirty = false; state.stale = true; renderBar(t('restored')); })
+            api('history', { sha: v.sha }).then(function (r) { close(); state.dirty = false; state.stale = true; renderBar(t('restored')); if (r.commit) waitForPublish(r.commit, true); })
               .catch(function (e) { b.disabled = false; window.alert(t('saveError') + e.message); });
           });
           row.appendChild(b);
@@ -705,7 +735,9 @@
   });
 
   window.addEventListener('resize', positionToolbar);
-  window.addEventListener('beforeunload', function (e) { if (state.dirty) { e.preventDefault(); e.returnValue = ''; } });
+  window.addEventListener('beforeunload', function (e) {
+    if (state.dirty || state.publishing) { e.preventDefault(); e.returnValue = state.dirty ? '' : t('leaveWhilePublishing'); }
+  });
 
   /* ---------------- arranque ---------------- */
   injectCSS();
@@ -714,6 +746,7 @@
   checkSession().then(function () {
     clearHash();
     showBar();
+    if (state.stale && state.latest) waitForPublish(state.latest, true);
     if (wantsLogin) startEditing();
   }).catch(function () {
     state.authed = false;

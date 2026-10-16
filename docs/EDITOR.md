@@ -17,7 +17,9 @@ la web en uno o dos minutos.
 5. Apuntes: botón **«Subir PDF»** junto a cada tema (máximo 3 MB por archivo).
 6. Cada texto existe en español y en inglés: con **ES / EN** de la cabecera se cambia la versión que se edita.
    Un texto y su traducción se mueven, duplican y eliminan juntos.
-7. **Guardar**. Si algo sale mal: **Historial → Restaurar** vuelve a poner el contenido de una versión anterior.
+7. **Guardar**. La barra dice «Publicando…» unos 30–60 segundos y luego «Publicado ✓»: hasta entonces, recargar la
+   página muestra todavía la versión anterior (no es que no se haya guardado). Si algo sale mal:
+   **Historial → Restaurar** vuelve a poner el contenido de una versión anterior.
 
 La sesión dura 12 horas. **Salir** la cierra.
 
