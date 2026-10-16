@@ -9,7 +9,7 @@ const API = 'https://api.github.com';
 function config() {
   const token = process.env.GITHUB_TOKEN;
   const repo = process.env.GITHUB_REPO || 'andreasssbh/organization-deportiva-';
-  const branch = process.env.GITHUB_BRANCH || 'claude/practical-lamport-54u3mt';
+  const branch = process.env.GITHUB_BRANCH || 'main';
   if (!token) throw new Error('GITHUB_TOKEN no está configurado');
   return { token, repo, branch };
 }

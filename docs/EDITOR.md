@@ -53,7 +53,7 @@ En Vercel → proyecto `organization-deportiva-` → **Settings → Environment 
 | `ADMIN_PASSWORD` | La contraseña de Víctor (larga; se la damos en persona o por un canal seguro). |
 | `GITHUB_TOKEN` | Token *fine-grained* de GitHub: **Repository access** → solo `organization-deportiva-`; **Permissions** → *Contents: Read and write*. Ponerle caducidad larga y apuntar la fecha. |
 | `GITHUB_REPO` | `andreasssbh/organization-deportiva-` (valor por defecto). |
-| `GITHUB_BRANCH` | La rama de producción de Vercel. Hoy: `claude/practical-lamport-54u3mt` (valor por defecto). |
+| `GITHUB_BRANCH` | La rama de producción de Vercel: `main` (valor por defecto). |
 
 Después, volver a desplegar (*Deployments → Redeploy*) para que las funciones lean las variables.
 
