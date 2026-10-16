@@ -52,7 +52,22 @@
     stale: { es: 'Hay una versión más reciente de la página publicándose. Espera un minuto y recarga antes de editar (si guardas ahora podrías borrar esos cambios).', en: 'A newer version of the page is being published. Wait a minute and reload before editing (saving now could overwrite those changes).' },
     staleSave: { es: 'La página ha cambiado desde que la abriste. Copia tus textos nuevos, recarga la página y vuelve a aplicarlos.', en: 'The page changed since you opened it. Copy your new text, reload the page and apply it again.' },
     reload: { es: 'Recargar', en: 'Reload' },
-    langHint: { es: 'Editas la versión en español. Cambia a EN arriba para editar el inglés.', en: 'You are editing the English version. Switch to ES at the top to edit the Spanish one.' },
+    langHint: { es: '⚠ Estás editando los textos en ESPAÑOL. Cada texto hay que cambiarlo también en INGLÉS (botón EN arriba). Fotos, orden, bloques y secciones cambian en los dos idiomas a la vez.',
+      en: '⚠ You are editing the texts in ENGLISH. Each text must also be changed in SPANISH (ES button at the top). Photos, order, blocks and sections change in both languages at once.' },
+    langWarnTitle: { es: 'Importante: los textos están en dos idiomas', en: 'Important: texts exist in two languages' },
+    langWarnHtml: {
+      es: '<p>Todo lo que sea <strong>texto</strong> —escribir, corregir, poner negrita o cambiar el tamaño de unas palabras, añadir un enlace dentro de una frase— <strong>hay que hacerlo dos veces: en español (ES) y en inglés (EN)</strong>. Se cambia de idioma con los botones <strong>ES / EN</strong> de arriba.</p>' +
+        '<p>Lo que <strong>no</strong> es texto cambia en los dos idiomas a la vez: las <strong>fotos</strong>, <strong>mover o arrastrar</strong> cosas, <strong>añadir o eliminar</strong> bloques y secciones, y la alineación o el tamaño de un párrafo entero. Lo nuevo aparece en los dos idiomas con un texto provisional que hay que cambiar en cada uno.</p>',
+      en: '<p>Everything that is <strong>text</strong> — typing, correcting, making some words bold or bigger, adding a link inside a sentence — <strong>has to be done twice: in Spanish (ES) and in English (EN)</strong>. Switch language with the <strong>ES / EN</strong> buttons at the top.</p>' +
+        '<p>What is <strong>not</strong> text changes in both languages at once: <strong>photos</strong>, <strong>moving or dragging</strong> things, <strong>adding or deleting</strong> blocks and sections, and the alignment or size of a whole paragraph. New content appears in both languages with placeholder text to change in each one.</p>'
+    },
+    understood: { es: 'Entendido', en: 'Got it' },
+    undo: { es: '↶ Deshacer', en: '↶ Undo' },
+    redo: { es: '↷ Rehacer', en: '↷ Redo' },
+    undone: { es: 'Deshecho.', en: 'Undone.' },
+    redone: { es: 'Rehecho.', en: 'Redone.' },
+    deleteSection: { es: '🗑 Eliminar esta sección', en: '🗑 Delete this section' },
+    confirmDeleteSection: { es: '¿Eliminar esta sección entera (y su enlace del menú)? Podrás recuperarla con «Deshacer» antes de guardar, o desde el Historial.', en: 'Delete this whole section (and its menu link)? You can get it back with "Undo" before saving, or from the History.' },
     confirmDiscard: { es: '¿Descartar todos los cambios sin guardar?', en: 'Discard all unsaved changes?' },
     confirmDelete: { es: '¿Eliminar este bloque completo?', en: 'Delete this whole block?' },
     linkPrompt: { es: 'Dirección del enlace (https://…, mailto:… o #seccion). Déjala vacía para quitar el enlace.', en: 'Link address (https://…, mailto:… or #section). Leave empty to remove the link.' },
@@ -148,6 +163,7 @@
         '<li><strong>Fotos</strong>: «Cambiar foto» en cada foto. Las fotos sin imagen no se ven en la web.</li>' +
         '<li><strong>Apuntes</strong>: «Subir PDF» junto a cada tema (máx. 3 MB).</li>' +
         '<li><strong>Idiomas</strong>: cada texto existe en español y en inglés y se cambia en cada idioma por separado: cambia a EN arriba para editar la versión inglesa. Las fotos, el orden y los bloques y secciones nuevos o borrados son comunes a los dos idiomas.</li>' +
+        '<li><strong>Deshacer</strong>: «↶ Deshacer» y «↷ Rehacer» en la barra de abajo (o Ctrl/⌘ + Z) deshacen cualquier cambio, también mover o eliminar. Para quitar una sección entera, usa «🗑 Eliminar esta sección» al final de la sección.</li>' +
         '<li>Pulsa <strong>Guardar</strong> al terminar. La web pública se actualiza en 1–2 minutos. Si algo sale mal, en <strong>Historial</strong> puedes volver a una versión anterior.</li></ul>',
       en: '<h3>How to edit</h3><ul>' +
         '<li><strong>Text</strong>: click any text and type. With the small bar: <strong>B</strong> bold, <em>I</em> italic, <u>U</u> underline, A− / A+ size, colour, alignment, lists (in a text box), 🔗 link (you choose the text and where it goes: a website, an email, a section or a PDF) and T× to clear formatting. With words selected it applies to them; otherwise to the whole paragraph.</li>' +
@@ -156,6 +172,7 @@
         '<li><strong>Photos</strong>: "Change photo" on each photo. Photos without an image are hidden on the site.</li>' +
         '<li><strong>Lecture notes</strong>: "Upload PDF" next to each topic (max 3 MB).</li>' +
         '<li><strong>Languages</strong>: every text exists in Spanish and English and is changed in each language separately: switch to ES at the top to edit the Spanish version. Photos, order, and added or deleted blocks and sections are shared by both languages.</li>' +
+        '<li><strong>Undo</strong>: "↶ Undo" and "↷ Redo" in the bottom bar (or Ctrl/⌘ + Z) undo any change, including moving or deleting. To remove a whole section, use "🗑 Delete this section" at the end of the section.</li>' +
         '<li>Press <strong>Save</strong> when you are done. The public site updates in 1–2 minutes. If something goes wrong, <strong>History</strong> lets you go back to an earlier version.</li></ul>'
     }
   };
@@ -170,7 +187,7 @@
   var state = {
     authed: false, editing: false, dirty: false, busy: false, stale: false, publishing: null, staleDone: false,
     deployed: null, current: null, pending: {}, ui: {},
-    clip: null
+    clip: null, undo: [], redo: [], typingAt: 0, typingHost: null
   };
 
   /* ---------------- utilidades ---------------- */
@@ -236,7 +253,9 @@
       '.sm-bar .sm-actions { display: flex; flex-wrap: wrap; gap: 6px; }' +
       '.sm-bar button { background: #262626; color: #fff; border-color: #404040; box-shadow: none; }' +
       '.sm-bar button:hover { background: #333; border-color: #737373; }' +
-      '.sm-hint { width: 100%; font-size: 12px; color: #a3a3a3; }' +
+      '.sm-hint { width: 100%; font-size: 13px; line-height: 1.35; color: #111; background: #fde68a; border-radius: 8px; padding: 6px 10px; font-weight: 600; }' +
+      '.sm-hint:empty { display: none; }' +
+      '.sm-lang-warn p { margin: 0 0 10px; }' +
       '.sm-warn { width: 100%; background: #7f1d1d; color: #fff; border-radius: 8px; padding: 8px 10px; font-size: 13px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }' +
       '.sm-toolbar { position: absolute; z-index: 999; display: none; gap: 4px; background: #111; padding: 5px; border-radius: 10px; box-shadow: 0 6px 20px rgba(0,0,0,.3); }' +
       '.sm-toolbar.sm-show { display: flex; }' +
@@ -282,7 +301,10 @@
       '.sm-ghost { position: fixed; z-index: 1003; pointer-events: none; background: #2563eb; color: #fff; padding: 6px 10px; border-radius: 8px; font: 600 13px/1.2 ui-sans-serif, system-ui, sans-serif; box-shadow: 0 8px 20px rgba(0,0,0,.3); }' +
       '.sm-drop-line { position: fixed; z-index: 1002; pointer-events: none; background: #2563eb; border-radius: 4px; box-shadow: 0 0 0 3px rgba(37,99,235,.25); display: none; }' +
       '.sm-drag-src { opacity: .35; }' +
-      '.sm-add-here { margin: 18px 0 0; }' +
+      '.sm-add-here { margin: 18px 0 0; display: flex; gap: 8px; flex-wrap: wrap; }' +
+      '.sm-add-here button { flex: 1 1 220px; }' +
+      '.sm-add-here button.sm-del-section { flex: 0 1 auto; border-color: rgba(185,28,28,.55) !important; background: rgba(185,28,28,.06) !important; color: #b91c1c !important; }' +
+      '.sm-add-here button.sm-del-section:hover { background: rgba(185,28,28,.14) !important; }' +
       '.sm-add-here button, .sm-add-section button { width: 100%; border: 2px dashed rgba(37,99,235,.55) !important; background: rgba(37,99,235,.06) !important; color: #2563eb !important; box-shadow: none !important; padding: 10px !important; font-weight: 700 !important; }' +
       '.sm-add-here button:hover, .sm-add-section button:hover { background: rgba(37,99,235,.14) !important; }' +
       '.sm-add-section { width: min(100% - 32px, 1180px); margin: 0 auto; padding: 6px 0; }' +
@@ -364,13 +386,13 @@
     if (state.ui.bar) { renderBar(); return; }
     var bar = el('div', { class: 'sm-bar sm-chrome', role: 'region', 'aria-label': 'Editor' });
     bar.innerHTML = '<span class="sm-dot" aria-hidden="true"></span><span class="sm-mode"></span><span class="sm-status" aria-live="polite"></span>' +
-      '<div class="sm-actions"><button type="button" data-a="toggle"></button><button type="button" data-a="add"></button><button type="button" data-a="save" class="sm-primary"></button>' +
+      '<div class="sm-actions"><button type="button" data-a="toggle"></button><button type="button" data-a="undo"></button><button type="button" data-a="redo"></button><button type="button" data-a="add"></button><button type="button" data-a="save" class="sm-primary"></button>' +
       '<button type="button" data-a="discard"></button><button type="button" data-a="history"></button><button type="button" data-a="help"></button><button type="button" data-a="logout"></button></div>' +
       '<div class="sm-warn" hidden><span></span><button type="button" data-a="reload"></button></div><div class="sm-hint"></div>';
     bar.addEventListener('mousedown', function (e) { if (e.target.closest('[data-a="add"]')) e.preventDefault(); });
     bar.addEventListener('click', function (e) {
       var b = e.target.closest('button[data-a]'); if (!b) return;
-      ({ toggle: function () { state.editing ? stopEditing() : startEditing(); }, save: save, discard: discard,
+      ({ toggle: function () { state.editing ? stopEditing() : startEditing(); }, save: save, discard: discard, undo: undo, redo: redo,
         add: function () { if (!state.editing) startEditing(); openAddMenu(b); },
         history: openHistory, help: openHelp, logout: logout, reload: function () { location.reload(); } })[b.getAttribute('data-a')]();
     });
@@ -387,11 +409,16 @@
     bar.classList.toggle('sm-is-dirty', state.dirty);
     bar.querySelector('.sm-mode').textContent = state.editing ? t('editing') : t('viewing');
     bar.querySelector('.sm-status').textContent = state.msg || (state.dirty ? t('dirty') : t('clean'));
-    var labels = { toggle: state.editing ? t('preview') : t('edit'), add: t('addBtn'), save: t('save'), discard: t('discard'), history: t('history'),
+    var labels = { toggle: state.editing ? t('preview') : t('edit'), undo: t('undo'), redo: t('redo'), add: t('addBtn'), save: t('save'), discard: t('discard'), history: t('history'),
       help: t('help'), logout: t('logout'), reload: t('reload') };
     bar.querySelectorAll('button[data-a]').forEach(function (b) { b.textContent = labels[b.getAttribute('data-a')]; });
     bar.querySelector('[data-a="save"]').disabled = state.busy || !state.dirty || state.stale;
     bar.querySelector('[data-a="add"]').hidden = !state.editing;
+    bar.querySelector('[data-a="undo"]').hidden = bar.querySelector('[data-a="redo"]').hidden = !state.editing;
+    bar.querySelector('[data-a="undo"]').disabled = state.busy || !state.undo.length;
+    bar.querySelector('[data-a="redo"]').disabled = state.busy || !state.redo.length;
+    bar.querySelector('[data-a="undo"]').title = 'Ctrl/⌘ + Z';
+    bar.querySelector('[data-a="redo"]').title = 'Ctrl/⌘ + Shift + Z';
     bar.querySelector('[data-a="discard"]').disabled = state.busy || !state.dirty;
     var warn = bar.querySelector('.sm-warn');
     warn.hidden = !state.stale;
@@ -449,7 +476,13 @@
           select(sec);
           openAddMenu(b, { append: container }, true);
         });
-        here.appendChild(b); container.appendChild(here);
+        var del = el('button', { type: 'button', class: 'sm-del-section' }, t('deleteSection'));
+        del.addEventListener('click', function (e) {
+          e.stopPropagation();
+          if (!window.confirm(t('confirmDeleteSection'))) return;
+          deleteSection(sec);
+        });
+        here.appendChild(b); here.appendChild(del); container.appendChild(here);
       }
       var between = el('div', { class: 'sm-ui sm-add-section', contenteditable: 'false' });
       var bs = el('button', { type: 'button' }, t('addSectionHere'));
@@ -478,6 +511,20 @@
     refreshTools();
     showPalette();
     renderBar();
+    showLangWarning();
+  }
+
+  // Aviso al entrar en modo edición: los textos se cambian en cada idioma por separado.
+  function showLangWarning(force) {
+    var seen = false;
+    try { seen = sessionStorage.getItem('sm-lang-warn') === '1'; } catch (e) {}
+    if (seen && !force) return;
+    var box = el('div', { class: 'sm-lang-warn' }, '<h2></h2>' + t('langWarnHtml') + '<div class="sm-row"><button type="button" class="sm-primary"></button></div>');
+    box.querySelector('h2').textContent = t('langWarnTitle');
+    box.querySelector('button').textContent = t('understood');
+    var close = modal(box);
+    box.querySelector('button').addEventListener('click', close);
+    try { sessionStorage.setItem('sm-lang-warn', '1'); } catch (e) {}
   }
 
   function stopEditing() {
@@ -588,6 +635,7 @@
   function format(cmd) {
     var sel = window.getSelection();
     if (!sel.rangeCount || !inRegion(sel.anchorNode && sel.anchorNode.parentElement)) return;
+    checkpoint();
     document.execCommand(cmd, false, null);
     setDirty();
   }
@@ -717,6 +765,7 @@
       var textNode = span || a;
       linkDialog({ title: t('linkEdit'), text: textNode.textContent.trim(), href: a.getAttribute('href'), allowRemove: !a.classList.contains('btn') && !a.closest('nav') }).then(function (r) {
         if (!r) return;
+        checkpoint();
         if (r.remove) {
           while (a.firstChild) a.parentNode.insertBefore(a.firstChild, a);
           a.remove();
@@ -734,6 +783,7 @@
     var selected = sel.isCollapsed ? '' : range.toString();
     linkDialog({ title: t('linkNew'), text: selected, href: '' }).then(function (r) {
       if (!r || r.remove) return;
+      checkpoint();
       var link = el('a', { href: r.href });
       link.textContent = r.text || r.href;
       externalize(link);
@@ -746,6 +796,7 @@
   /* ---------------- mover, cortar, pegar, duplicar, eliminar ---------------- */
   function move(dir) {
     var item = state.current; if (!item) return;
+    checkpoint();
     var g = group(item);
     if (dir < 0) {
       var before = g[0].previousElementSibling;
@@ -768,6 +819,7 @@
 
   function cut() {
     var item = state.current; if (!item) return;
+    checkpoint();
     var g = group(item);
     state.clip = { nodes: g, section: isTopSection(item) };
     g.forEach(function (n) { n.classList.remove('sm-selected'); n.remove(); });
@@ -786,6 +838,7 @@
 
   function duplicate() {
     var item = state.current; if (!item) return;
+    checkpoint();
     var g = group(item);
     var clones = g.map(function (n) {
       var c = n.cloneNode(true);
@@ -809,15 +862,21 @@
 
   function removeItem() {
     var item = state.current; if (!item) return;
-    if ((item.matches(CONTAINER_SEL) || isTopSection(item)) && !window.confirm(t('confirmDelete'))) return;
-    if (isTopSection(item) && item.id) {
-      // Quitar también los enlaces del menú y del pie que llevaban a esta sección.
-      document.querySelectorAll('[data-region="nav"] a[href="#' + item.id + '"], [data-region="footer"] a[href="#' + item.id + '"]').forEach(function (a) { a.remove(); });
-    }
-    var wasSection = isTopSection(item);
+    if (isTopSection(item)) { if (window.confirm(t('confirmDeleteSection'))) deleteSection(item); return; }
+    if (item.matches(CONTAINER_SEL) && !window.confirm(t('confirmDelete'))) return;
+    checkpoint();
     group(item).forEach(function (n) { n.remove(); });
-    if (wasSection) refreshTools();
     select(null); setDirty();
+  }
+
+  function deleteSection(sec) {
+    checkpoint();
+    if (sec.id) {
+      // Quitar también los enlaces del menú y del pie que llevaban a esta sección.
+      document.querySelectorAll('[data-region="nav"] a[href="#' + sec.id + '"], [data-region="footer"] a[href="#' + sec.id + '"]').forEach(function (a) { a.remove(); });
+    }
+    sec.remove();
+    select(null); refreshTools(); setDirty();
   }
 
   function selectParent() {
@@ -926,6 +985,7 @@
   }
 
   function insertNodes(nodes, kind, target) {
+    checkpoint();
     target = target || insertTarget(kind);
     if (target.before) target.before.before.apply(target.before, nodes);
     else if (target.after) target.after.after.apply(target.after, nodes);
@@ -1021,6 +1081,7 @@
   // Aplica una clase (tamaño o color) al texto seleccionado; sin selección, al párrafo entero.
   function applyText(list, cls) {
     var host = currentHost(); if (!host) { window.alert(t('selectTextFormat')); return; }
+    checkpoint();
     var sel = window.getSelection();
     if (sel.isCollapsed) {
       setClass(blockTargets(host), list, cls); // párrafo entero: en los dos idiomas
@@ -1074,12 +1135,14 @@
   }
   function align(cls) {
     var host = currentHost(); if (!host) { window.alert(t('selectTextFormat')); return; }
+    checkpoint();
     setClass(blockTargets(host), ['txt-center', 'txt-right'], cls);
     setDirty();
   }
   function list(cmd) {
     var host = currentHost();
     if (!host || !host.matches('.textbox > div')) { window.alert(t('listOnlyTextbox')); return; }
+    checkpoint();
     document.execCommand(cmd, false, null);
     // El navegador a veces mete la lista dentro de un párrafo: sacarla.
     host.querySelectorAll('p > ul, p > ol').forEach(function (lst) {
@@ -1090,6 +1153,7 @@
   }
   function clearFormat() {
     var host = currentHost(); if (!host) { window.alert(t('selectTextFormat')); return; }
+    checkpoint();
     var sel = window.getSelection();
     var whole = sel.isCollapsed;
     if (whole) {
@@ -1322,6 +1386,64 @@
     select(payload.nodes[0]);
   }
 
+  /* ---------------- deshacer / rehacer ---------------- */
+  // Antes de cada cambio se guarda una copia de las zonas editables; «Deshacer»
+  // vuelve a la copia anterior. Vale para todo: textos, formato, mover, añadir,
+  // eliminar y fotos.
+  var MAX_UNDO = 60;
+  function snapshot() {
+    var html = {};
+    regions().forEach(function (r) { html[r.getAttribute('data-region')] = r.innerHTML; });
+    return { html: html, pending: Object.assign({}, state.pending) };
+  }
+  function checkpoint() {
+    state.undo.push(snapshot());
+    if (state.undo.length > MAX_UNDO) state.undo.shift();
+    state.redo = [];
+    state.typingAt = 0;
+    renderBar();
+  }
+  function restore(snap) {
+    select(null); closeAddMenu();
+    regions().forEach(function (r) {
+      var h = snap.html[r.getAttribute('data-region')];
+      if (h != null) r.innerHTML = h;
+      r.querySelectorAll('.sm-selected, .sm-drag-src').forEach(function (n) { n.classList.remove('sm-selected', 'sm-drag-src'); });
+    });
+    state.pending = Object.assign({}, snap.pending);
+    state.typingAt = 0;
+    state.clip = null; // lo cortado vuelve a su sitio con la copia restaurada
+    if (state.editing) { markEditable(); refreshTools(); }
+    state.dirty = true;
+  }
+  function undo() {
+    if (!state.undo.length) return;
+    state.redo.push(snapshot());
+    restore(state.undo.pop());
+    renderBar(t('undone'));
+  }
+  function redo() {
+    if (!state.redo.length) return;
+    state.undo.push(snapshot());
+    restore(state.redo.pop());
+    renderBar(t('redone'));
+  }
+  // Escribir: una copia al empezar a escribir en un texto (no una por letra).
+  document.addEventListener('beforeinput', function (e) {
+    if (!state.editing || !inRegion(e.target)) return;
+    if (e.inputType === 'historyUndo' || e.inputType === 'historyRedo') { e.preventDefault(); return; }
+    var host = editableHost(e.target);
+    var now = Date.now();
+    if (host !== state.typingHost || now - state.typingAt > 1500) checkpoint();
+    state.typingHost = host; state.typingAt = now;
+  }, true);
+  document.addEventListener('keydown', function (e) {
+    if (!state.editing || !(e.metaKey || e.ctrlKey) || e.altKey) return;
+    var k = e.key.toLowerCase();
+    if (k === 'z' && !e.shiftKey) { e.preventDefault(); undo(); }
+    else if ((k === 'z' && e.shiftKey) || k === 'y') { e.preventDefault(); redo(); }
+  });
+
   /* ---------------- fotos ---------------- */
   function addPhotoTools(fig) {
     fig.setAttribute('data-sm-empty', t('noPhoto'));
@@ -1332,6 +1454,7 @@
     change.addEventListener('click', function (e) { e.stopPropagation(); input.click(); });
     remove.addEventListener('click', function (e) {
       e.stopPropagation();
+      checkpoint();
       fig.setAttribute('data-src', '');
       var img = fig.querySelector('img'); if (img) img.removeAttribute('src');
       fig.classList.remove('has-img'); fig.classList.add('no-img');
@@ -1343,6 +1466,7 @@
         var base = slug((fig.getAttribute('data-src') || '').split('/').pop() || file.name).replace(/-[a-z0-9]{6,9}$/, '');
         var path = 'images/' + base + '-' + Date.now().toString(36) + '.jpg';
         return upload(path, dataUrl.split(',')[1]).then(function () {
+          checkpoint();
           fig.setAttribute('data-src', path);
           var img = fig.querySelector('img');
           if (!img) { img = el('img', { alt: '' }); fig.insertBefore(img, fig.firstChild); }
@@ -1387,6 +1511,7 @@
       var reader = new FileReader();
       reader.onload = function () {
         upload(path, String(reader.result).split(',')[1]).then(function () {
+          checkpoint();
           a.setAttribute('data-file', path); a.setAttribute('href', path);
           a.removeAttribute('aria-disabled');
           renderBar(t('pdfReady'));
@@ -1575,6 +1700,7 @@
     if (!state.editing || !inRegion(e.target)) return;
     var text = (e.clipboardData || window.clipboardData).getData('text/plain');
     e.preventDefault();
+    checkpoint();
     document.execCommand('insertText', false, text);
   });
 

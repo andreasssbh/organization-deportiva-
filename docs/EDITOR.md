@@ -34,7 +34,12 @@ la web en uno o dos minutos.
    van juntos). Lo nuevo aparece en los dos idiomas con un texto provisional que hay que cambiar en cada uno. Un
    botón nuevo empieza con el mismo texto en los dos idiomas; un enlace dentro de una frase pertenece a esa frase, así
    que hay que ponerlo también en la frase del otro idioma.
-7. **Guardar**. La barra dice «Publicando…» unos 30–60 segundos y luego «Publicado ✓»: hasta entonces, recargar la
+7. **Deshacer**: «↶ Deshacer» / «↷ Rehacer» en la barra de abajo (o Ctrl/⌘ + Z y Ctrl/⌘ + Shift + Z) deshacen
+   cualquier cambio desde que se abrió la página: escribir, formato, mover o arrastrar, añadir, eliminar y fotos.
+   Para quitar una sección entera está el botón **«🗑 Eliminar esta sección»** al final de cada sección (quita también
+   su enlace del menú). Al entrar en modo edición aparece un aviso de que los textos se cambian en cada idioma por
+   separado, y la barra lo recuerda en amarillo mientras se edita.
+8. **Guardar**. La barra dice «Publicando…» unos 30–60 segundos y luego «Publicado ✓»: hasta entonces, recargar la
    página muestra todavía la versión anterior (no es que no se haya guardado). Si algo sale mal:
    **Historial → Restaurar** vuelve a poner el contenido de una versión anterior.
 
